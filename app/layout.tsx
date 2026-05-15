@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
+
+import { Header } from "@/components/header/header";
 import "./globals.css";
 
 const inter = Inter({
@@ -10,12 +12,13 @@ const inter = Inter({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Pot Creation Journey",
-  description: "A web application that guides a user from a marketing homepage through a multi-step flow to create a group pot",
+  description:
+    "A web application that guides a user from a marketing homepage through a multi-step flow to create a group pot",
 };
 
 export default function RootLayout({
@@ -29,6 +32,8 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white text-black">
+        <Header logo={<span>Collctiv</span>} />
+
         {children}
       </body>
     </html>

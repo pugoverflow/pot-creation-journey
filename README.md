@@ -12,6 +12,7 @@ A responsive Next.js web application that guides a user from a marketing homepag
 - [React](https://react.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Class Variance Authority (CVA)](https://cva.style/docs)
 - [Base UI](https://base-ui.com/)
 - [Motion](https://motion.dev/)
 - [Vitest](https://vitest.dev/)
@@ -105,7 +106,7 @@ This helped keep accessibility in mind from the start and avoided unnecessary co
 
 Before introducing styling, I reviewed the design to identify elements that were likely to become reusable across the application.
 
-As patterns started repeating, those elements were extracted into reusable components and replaced with Base UI primitives where appropriate. This helped avoid duplicating styles and logic throughout the codebase, making components easier to maintain and govern consistently.
+As patterns started repeating, those elements were extracted into reusable components and replaced with Base UI primitives, with variants added using CVA where appropriate. This helped avoid duplicating styles and logic throughout the codebase, making components easier to maintain and govern consistently.
 
 In a production environment, these components could evolve into a separate component library as part of a larger design system.
 

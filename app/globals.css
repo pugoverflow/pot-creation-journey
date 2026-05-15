@@ -32,6 +32,14 @@
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
 
+  /* Spacing / sizing */
+  --size-button-height: 46px;
+  --size-button-icon: 46px;
+  --size-button-padding-x: 40px;
+  --size-button-padding-y: 10px;
+  --size-button-radius: 40px;
+  --size-border-width: 1px;
+
   /* Heading typography */
   --text-h1-letter-spacing: -0.96px;
   --text-h1-line-height: 52.8px;
@@ -57,6 +65,9 @@
   /* Control typography */
   --text-button-line-height: 24px;
   --text-button-size: 16px;
+
+  --text-cta-button-line-height: 24px;
+  --text-cta-button-size: 15.4px;
 
   --text-input-line-height: 1;
   --text-input-size: 16px;
@@ -92,7 +103,7 @@
   }
 }
 
-/* Reusable typography variants */
+/* Reusable typography and component variants */
 @layer components {
   /* Headings */
   .type-h1 {
@@ -150,7 +161,7 @@
     line-height: var(--text-caption-line-height);
   }
 
-  /* Controls */
+  /* Controls typography */
   .type-button {
     color: var(--color-blue-20);
     font-family: var(--font-2);
@@ -158,6 +169,16 @@
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0;
     line-height: var(--text-button-line-height);
+  }
+
+  .type-cta-button {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-cta-button-size);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0;
+    line-height: var(--text-cta-button-line-height);
+    text-align: center;
   }
 
   .type-input {
@@ -171,6 +192,39 @@
 
   .type-input::placeholder {
     color: var(--color-azure-65);
+  }
+
+  /* Buttons */
+  .button-base {
+    align-items: center;
+    border-radius: var(--size-button-radius);
+    display: inline-flex;
+    height: var(--size-button-height);
+    justify-content: center;
+    padding: var(--size-button-padding-y) var(--size-button-padding-x);
+  }
+
+  .button-link {
+    background-color: var(--color-white);
+    border: var(--size-border-width) solid var(--color-blue-23);
+    color: var(--color-blue-20);
+  }
+
+  .button-cta {
+    background-color: var(--color-yellow-50);
+    border: var(--size-border-width) solid transparent;
+    color: var(--color-blue-20);
+  }
+
+  .button-icon {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: var(--color-white);
+    display: inline-flex;
+    height: var(--size-button-icon);
+    justify-content: center;
+    width: var(--size-button-icon);
   }
 
   /* Display */
