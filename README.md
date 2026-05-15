@@ -83,6 +83,7 @@ Pot data is persisted using `localStorage` so the dashboard route can independen
 
 - I used `localStorage` for persistence as `sessionStorage` is tab-specific and URL state felt unnecessarily complex for the scope of the challenge.
 - I chose Base UI for interactive components so I could keep full control over the styling whilst still benefiting from accessible component primitives and interaction logic.
+- I created reusable utility classes referencing the primitive color tokens to keep development fast and consistent. In a larger production application, these would likely evolve into dedicated typography and spacing components, alongside semantic tokens as part of a broader design system.
 
 ---
 

@@ -22,9 +22,13 @@ export function CategorySelector({
                         onClick={() => onSelect(category.id)}
                         aria-pressed={isSelected}
                     >
-                        <div>{category.emoji}</div>
+                        <div className="type-emoji">
+                            {category.emoji}
+                        </div>
 
-                        <p>{category.label}</p>
+                        <p className="type-body-small">
+                            {category.label}
+                        </p>
                     </button>
                 );
             })}

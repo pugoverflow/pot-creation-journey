@@ -17,8 +17,7 @@ export default function HomePage() {
 
   const trimmedPotName = potName.trim();
 
-  const isFormValid =
-    selectedCategory !== null && trimmedPotName.length > 0;
+  const isFormValid = selectedCategory !== null && trimmedPotName.length > 0;
 
   function handleCreatePot() {
     if (!selectedCategory || !trimmedPotName) {
@@ -38,24 +37,26 @@ export default function HomePage() {
 
   return (
     <main>
-      <div>
-        <h1>Collect money without sharing bank details.</h1>
+      <section>
+        <h1 className="type-h1">
+          Collect money without sharing bank details.
+        </h1>
 
-        <p>
+        <p className="type-body-large">
           Organise the things you love with the people you love - without
           getting stuck with the bill.
         </p>
-      </div>
+      </section>
 
-      <div>
-        <h5>What are you collecting for?</h5>
+      <section>
+        <h5 className="type-h5">What are you collecting for?</h5>
 
         <CategorySelector
           selectedCategory={selectedCategory}
           onSelect={setSelectedCategory}
         />
 
-        <h5>What should we call the pot?</h5>
+        <h5 className="type-h5">What should we call the pot?</h5>
 
         <input
           type="text"
@@ -65,16 +66,18 @@ export default function HomePage() {
           }}
           maxLength={40}
           placeholder="Enter a name for this pot"
+          className="type-input"
         />
 
         <button
           type="button"
           disabled={!isFormValid}
           onClick={handleCreatePot}
+          className="type-button"
         >
           Create your pot
         </button>
-      </div>
+      </section>
     </main>
   );
 }

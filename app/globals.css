@@ -1,21 +1,202 @@
 @import "tailwindcss";
 
+/* Global font aliases from next/font */
 :root {
   --font-sans: var(--font-inter);
   --font-heading: var(--font-montserrat);
 }
 
-* {
-  box-sizing: border-box;
+/* Primitive design tokens from Figma */
+@theme {
+  /* Fonts */
+  --font-1: var(--font-inter);
+  --font-2: var(--font-montserrat);
+
+  /* Font weights */
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-semi-bold: 600;
+
+  /* Colours */
+  --color-azure-34: #4b5563;
+  --color-azure-65: #9ca3af;
+  --color-blue-20: #1e1b4b;
+  --color-blue-23: #1b0273;
+  --color-cyan-37: #0d9baf;
+  --color-grey-94: #ececf1;
+  --color-grey-95: #e9e8fc;
+  --color-grey-95-selected: #fffbe6;
+  --color-grey-98: #f9fafb;
+  --color-rose-52: #f2167d;
+  --color-white: #ffffff;
+  --color-yellow-50: #ffde00;
+
+  /* Heading typography */
+  --text-h1-letter-spacing: -0.96px;
+  --text-h1-line-height: 52.8px;
+  --text-h1-size: 48px;
+
+  --text-h2-letter-spacing: -0.24px;
+  --text-h2-line-height: 36px;
+  --text-h2-size: 23.8px;
+
+  --text-h5-line-height: 24px;
+  --text-h5-size: 16px;
+
+  /* Body typography */
+  --text-body-large-line-height: 27px;
+  --text-body-large-size: 18px;
+
+  --text-body-small-line-height: 22.8px;
+  --text-body-small-size: 14.5px;
+
+  --text-caption-line-height: 14.4px;
+  --text-caption-size: 12px;
+
+  /* Control typography */
+  --text-button-line-height: 24px;
+  --text-button-size: 16px;
+
+  --text-input-line-height: 1;
+  --text-input-size: 16px;
+
+  /* Display typography */
+  --text-emoji-line-height: 18px;
+  --text-emoji-size: 18px;
+
+  --text-pot-value-large-line-height: 80px;
+  --text-pot-value-large-size: 77.5px;
+
+  --text-pot-value-line-height: 60px;
+  --text-pot-value-size: 57.9px;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+/* Base page styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--color-white);
+    color: var(--color-blue-20);
+    font-family: var(--font-sans);
+  }
 }
 
-body {
-  min-height: 100vh;
-  font-family: var(--font-sans);
+/* Reusable typography variants */
+@layer components {
+  /* Headings */
+  .type-h1 {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-h1-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--text-h1-letter-spacing);
+    line-height: var(--text-h1-line-height);
+  }
+
+  .type-h2 {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-h2-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--text-h2-letter-spacing);
+    line-height: var(--text-h2-line-height);
+  }
+
+  .type-h5 {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-h5-size);
+    font-weight: var(--font-weight-semi-bold);
+    letter-spacing: 0;
+    line-height: var(--text-h5-line-height);
+  }
+
+  /* Body */
+  .type-body-large {
+    color: var(--color-azure-34);
+    font-family: var(--font-2);
+    font-size: var(--text-body-large-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-body-large-line-height);
+  }
+
+  .type-body-small {
+    color: var(--color-azure-34);
+    font-family: var(--font-1);
+    font-size: var(--text-body-small-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-body-small-line-height);
+  }
+
+  .type-caption {
+    color: var(--color-azure-34);
+    font-family: var(--font-2);
+    font-size: var(--text-caption-size);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0;
+    line-height: var(--text-caption-line-height);
+  }
+
+  /* Controls */
+  .type-button {
+    color: var(--color-blue-20);
+    font-family: var(--font-2);
+    font-size: var(--text-button-size);
+    font-weight: var(--font-weight-semi-bold);
+    letter-spacing: 0;
+    line-height: var(--text-button-line-height);
+  }
+
+  .type-input {
+    color: var(--color-azure-65);
+    font-family: var(--font-2);
+    font-size: var(--text-input-size);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0;
+    line-height: var(--text-input-line-height);
+  }
+
+  .type-input::placeholder {
+    color: var(--color-azure-65);
+  }
+
+  /* Display */
+  .type-emoji {
+    font-family: var(--font-1);
+    font-size: var(--text-emoji-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-emoji-line-height);
+  }
+
+  .type-pot-value {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-pot-value-size);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0;
+    line-height: var(--text-pot-value-line-height);
+  }
+
+  .type-pot-value-large {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-pot-value-large-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0;
+    line-height: var(--text-pot-value-large-line-height);
+  }
 }
