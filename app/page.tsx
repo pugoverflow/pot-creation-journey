@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { CategorySelector } from "@/components/category-selector";
+import { CategorySelector } from "@/components/category-selector/category-selector";
 import { Button } from "@/components/ui/button/button";
 import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
