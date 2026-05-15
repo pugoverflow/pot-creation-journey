@@ -1,13 +1,40 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { CategorySelector } from "@/components/category-selector";
+import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
 
 export default function HomePage() {
+  const router = useRouter();
+
   const [selectedCategory, setSelectedCategory] =
     useState<PotCategory | null>(null);
+
+  const [potName, setPotName] = useState("");
+
+  const trimmedPotName = potName.trim();
+
+  const isFormValid =
+    selectedCategory !== null && trimmedPotName.length > 0;
+
+  function handleCreatePot() {
+    if (!selectedCategory || !trimmedPotName) {
+      return;
+    }
+
+    const pot = {
+      id: crypto.randomUUID().replaceAll("-", "").slice(0, 22),
+      name: trimmedPotName,
+      category: selectedCategory,
+    };
+
+    savePot(pot);
+
+    router.push(`/dashboard/pots/${pot.id}`);
+  }
 
   return (
     <main>
@@ -28,18 +55,25 @@ export default function HomePage() {
           onSelect={setSelectedCategory}
         />
 
-        {/* <p>Selected category: {selectedCategory ?? "None"}</p> */}
-
         <h5>What should we call the pot?</h5>
 
-        {/* The user must provide a Name for their group pot. */}
-        {/* Implement basic input sanitation or character limit validation as you see fit. But both the category and name must be completed to proceed. */}
+        <input
+          type="text"
+          value={potName}
+          onChange={(event) => {
+            setPotName(event.target.value.slice(0, 40));
+          }}
+          maxLength={40}
+          placeholder="Enter a name for this pot"
+        />
 
-        <button>Create your pot</button>
-
-        {/* When the user clicks the "Create your pot" button, the application should process the creation and transition to the next step. */}
-        {/* Cross-Domain Simulation: For the purpose of this task, assume the Homepage and the Pot Information Screen exist on two separate domains (e.g., the homepage on collctiv.com and the dashboard application on app.collctiv.com). */}
-        {/* State & Routing: To accommodate this architectural separation, data must persist across this boundary (e.g., via localStorage, session storage, or URL state). While simple conditional rendering is acceptable for step transitions, implementing clean, structured client-side routing (with simulated domain paths or route updates) will be highly favoured. */}
+        <button
+          type="button"
+          disabled={!isFormValid}
+          onClick={handleCreatePot}
+        >
+          Create your pot
+        </button>
       </div>
     </main>
   );
