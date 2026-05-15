@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { CategorySelector } from "@/components/category-selector/category-selector";
+import { ToggleGroup } from "@/components/ui/toggle-group/toggle-group";
+import { categories } from "@/lib/categories";;
 import { Button } from "@/components/ui/button/button";
 import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
@@ -123,15 +124,18 @@ export default function HomePage() {
               for?
             </h5>
 
-            <CategorySelector
-              selectedCategory={
-                selectedCategory
+            <ToggleGroup
+              ariaLabel="Select a pot category"
+              value={selectedCategory}
+              onValueChange={(value) =>
+                setSelectedCategory(value as PotCategory)
               }
-              onSelect={
-                setSelectedCategory
-              }
+              options={categories.map((category) => ({
+                id: category.id,
+                label: category.label,
+                icon: category.emoji,
+              }))}
             />
-
             <h5 className="type-h5">
               What should we call the
               pot?
