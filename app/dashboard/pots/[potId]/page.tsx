@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
+import { SignupModal } from "@/components/signup-modal";
 import { getPotById } from "@/lib/pot-storage";
+import { socials } from "@/lib/socials";
 import type { Pot } from "@/types/pot";
 
 export default function PotPreviewPage() {
     const params = useParams<{ potId: string }>();
 
     const [pot, setPot] = useState<Pot | null>(null);
+    const [isSignupOpen, setIsSignupOpen] = useState(false);
 
     useEffect(() => {
         const foundPot = getPotById(params.potId);
@@ -17,33 +20,55 @@ export default function PotPreviewPage() {
         setPot(foundPot);
     }, [params.potId]);
 
+    function handleProtectedAction() {
+        setIsSignupOpen(true);
+    }
+
     return (
         <main>
             <div>
-                <p> {pot?.name ?? "Pot not found"}</p>
+                <p>{pot?.name ?? "Pot not found"}</p>
             </div>
 
-            {/* If the user clicks any interactive action button on the Pot Information Screen, the application must intercept the action and present a sign-up modal/pop-up prompting them to complete an account registration. */}
-
             <div>
-                <button>Collect money</button>
-                <button>Send money</button>
-                <button>Customise pot</button>
-                <button>Menu</button>
+                <button type="button" onClick={handleProtectedAction}>
+                    Collect money
+                </button>
+
+                <button type="button" onClick={handleProtectedAction}>
+                    Send money
+                </button>
+
+                <button type="button" onClick={handleProtectedAction}>
+                    Customise pot
+                </button>
+
+                <button type="button" onClick={handleProtectedAction}>
+                    Menu
+                </button>
             </div>
 
             <div>
                 <p>Invite people to pay</p>
 
                 <div>
-                    <button>Email</button>
-                    <button>QR code</button>
-                    <button>WhatsApp</button>
-                    <button>Facebook</button>
-                    <button> Instagram</button>
-                    <button> X</button>
+                    {socials.map((social) => (
+                        <button
+                            key={social.id}
+                            type="button"
+                            onClick={handleProtectedAction}
+                        >
+                            <span>{social.icon}</span>
+                            <span>{social.label}</span>
+                        </button>
+                    ))}
                 </div>
             </div>
+
+            <SignupModal
+                open={isSignupOpen}
+                onClose={() => setIsSignupOpen(false)}
+            />
         </main>
-    )
+    );
 }
