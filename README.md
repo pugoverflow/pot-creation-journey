@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pot Creation Journey
 
-## Getting Started
+## Overview
 
-First, run the development server:
+A responsive Next.js web application that guides a user from a marketing homepage through a multi-step flow to create a group pot.
+
+---
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) (App Router)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Base UI](https://base-ui.com/)
+- [Motion](https://motion.dev/)
+- [Vitest](https://vitest.dev/)
+
+---
+
+## Instructions
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Open the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Homepage:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```txt
+http://localhost:3000
+```
 
-## Learn More
+Pot preview screen:
 
-To learn more about Next.js, take a look at the following resources:
+```txt
+http://localhost:3000/dashboard/pots/[potId]
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Example:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```txt
+http://localhost:3000/dashboard/pots/example-pot-id
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architectural Decisions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The challenge mentioned simulating a split between:
+
+```txt
+collctiv.com
+```
+
+and:
+
+```txt
+app.collctiv.com
+```
+
+To handle this, I used route separation within Next.js App Router:
+
+```txt
+/                     → homepage
+/dashboard/*          → dashboard experience
+```
+
+Pot data is persisted using `localStorage` so the dashboard route can independently retrieve the pot data using the route parameter rather than relying on shared React state.
+
+---
+
+## Trade-offs
+
+- I used `localStorage` for persistence as `sessionStorage` is tab-specific and URL state felt unnecessarily complex for the scope of the challenge.
+- I chose Base UI for interactive components so I could keep full control over the styling whilst still benefiting from accessible component primitives and interaction logic.
+
+---
+
+## Best Practices
+
+### Content-led development
+
+The initial focus was getting the full user journey and logic working end-to-end before introducing styling and polish.
+
+This ensured the core functionality and information architecture were established early whilst reducing the risk of spending too much time on UI before the flow itself was fully working.
+
+### Semantic HTML
+
+Initially, components were built using semantic HTML whilst establishing the layout structure and matching the design.
+
+This helped keep accessibility in mind from the start and avoided unnecessary code bloat and premature abstraction.
+
+### DRY (Don't Repeat Yourself)
+
+Before introducing styling, I reviewed the design to identify elements that were likely to become reusable across the application.
+
+As patterns started repeating, those elements were extracted into reusable components and replaced with Base UI primitives where appropriate. This helped avoid duplicating styles and logic throughout the codebase, making components easier to maintain and govern consistently.
+
+In a production environment, these components could evolve into a separate component library as part of a larger design system.
+
+### Incremental approach
+
+To help make my thought process easier to follow during review, I’ve been using the conventions from [gitmoji.dev](https://gitmoji.dev/) for commit messages.
+
+In a production environment, this reflects the sort of incremental development workflow typically seen alongside CI/CD practices.
+
+Commit history:
+
+https://github.com/pugoverflow/pot-creation-journey/commits/main/
