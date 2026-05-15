@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { ToggleGroup } from "@/components/ui/toggle-group/toggle-group";
+import { Input } from "@/components/ui/input/input";
 import { categories } from "@/lib/categories";;
 import { Button } from "@/components/ui/button/button";
 import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
+import { Pencil } from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
@@ -141,7 +143,7 @@ export default function HomePage() {
               pot?
             </h5>
 
-            <input
+            <Input
               type="text"
               value={potName}
               onChange={(event) => {
@@ -154,7 +156,7 @@ export default function HomePage() {
               }}
               maxLength={40}
               placeholder="Enter a name for this pot"
-              className="type-input"
+              icon={<Pencil size={18} />}
             />
 
             <Button

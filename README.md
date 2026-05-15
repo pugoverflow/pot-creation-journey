@@ -14,6 +14,7 @@ A responsive Next.js web application that guides a user from a marketing homepag
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Class Variance Authority (CVA)](https://cva.style/docs)
 - [Base UI](https://base-ui.com/)
+- [Lucide](https://lucide.dev/)
 - [Motion](https://motion.dev/)
 - [Vitest](https://vitest.dev/)
 
