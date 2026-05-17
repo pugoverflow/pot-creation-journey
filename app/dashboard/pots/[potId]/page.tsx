@@ -10,8 +10,8 @@ import { motion } from "motion/react";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { useParams } from "next/navigation";
 
-import { AnimatedAmount } from "@/components/animated-amount/animated-amount";
-import { SignupModal } from "@/components/signup-modal/signup-modal";
+import { AnimatedAmount } from "@/components/custom/animated-amount/animated-amount";
+import { SignupModal } from "@/components/custom/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
 import { stepEnter } from "@/lib/motion";
 import { getPotSnapshot } from "@/lib/pot-storage";

@@ -4,9 +4,9 @@ import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Logo } from "@/components/logo/logo";
-import { LoginModal } from "@/components/login-modal/login-modal";
-import { SignupModal } from "@/components/signup-modal/signup-modal";
+import { Logo } from "@/components/custom/logo/logo";
+import { LoginModal } from "@/components/custom/login-modal/login-modal";
+import { SignupModal } from "@/components/custom/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
 
 import {

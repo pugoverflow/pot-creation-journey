@@ -1,128 +1,62 @@
 # Pot Creation Journey
 
-## Overview
+A responsive Next.js app: marketing homepage → multi-step pot creation → dashboard preview.
 
-A responsive Next.js web application that guides a user from a marketing homepage through a multi-step flow to create a group pot.
+## Features
 
----
+- Multi-step pot creation flow
+- Simulated cross-domain routing (`/` vs `/dashboard/*`)
+- Client-side persistence via `localStorage`
+- Accessible UI (Base UI + Tailwind)
+- Storybook for component docs
 
 ## Tech Stack
 
-- [Next.js](https://nextjs.org/) (App Router)
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Class Variance Authority (CVA)](https://cva.style/docs)
-- [Base UI](https://base-ui.com/)
-- [Lucide](https://lucide.dev/)
-- [Motion](https://motion.dev/)
-- [Vitest](https://vitest.dev/)
+**App:** [Next.js](https://nextjs.org/) (App Router), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
 
----
+**UI:** [Tailwind CSS](https://tailwindcss.com/), [CVA](https://cva.style/docs), [Base UI](https://base-ui.com/), [Lucide](https://lucide.dev/), [Motion](https://motion.dev/)
 
-## Instructions
+**Tooling:** [Storybook](https://storybook.js.org/), [Vitest](https://vitest.dev/), [ESLint](https://eslint.org/)
 
-### Install dependencies
+## Getting Started
 
 ```bash
 npm install
+npm run dev          # http://localhost:3000
+npm run storybook    # http://localhost:6006
 ```
 
-### Run the development server
+Start at [http://localhost:3000](http://localhost:3000) and complete the pot creation flow—on submit you are redirected to `/dashboard/pots/{id}`. The preview only works for pots already saved in `localStorage` in that browser; visiting a dashboard URL directly (or after clearing storage) will not load a pot.
 
-```bash
-npm run dev
-```
+## Architecture
 
-### Open the application
-
-Homepage:
+The challenge simulates `collctiv.com` vs `app.collctiv.com` using App Router routes:
 
 ```txt
-http://localhost:3000
+/              → homepage (create pot)
+/dashboard/*   → dashboard (preview by potId)
 ```
 
-Pot preview screen:
-
-```txt
-http://localhost:3000/dashboard/pots/[potId]
-```
-
-Example:
-
-```txt
-http://localhost:3000/dashboard/pots/example-pot-id
-```
-
----
-
-## Architectural Decisions
-
-The challenge mentioned simulating a split between:
-
-```txt
-collctiv.com
-```
-
-and:
-
-```txt
-app.collctiv.com
-```
-
-To handle this, I used route separation within Next.js App Router:
-
-```txt
-/                     → homepage
-/dashboard/*          → dashboard experience
-```
-
-Pot data is persisted using `localStorage` so the dashboard route can independently retrieve the pot data using the route parameter rather than relying on shared React state.
-
----
+Pots are stored in `localStorage` keyed by `potId` so the dashboard route loads independently—no shared React state across the simulated domain boundary. In production this would be an API; `localStorage` is a lightweight stand-in.
 
 ## Trade-offs
 
-- I used `localStorage` for persistence as `sessionStorage` is tab-specific and URL state felt unnecessarily complex for the scope of the challenge.
-- I chose Base UI for interactive components so I could keep full control over the styling whilst still benefiting from accessible component primitives and interaction logic.
-- I created reusable utility classes referencing the primitive color tokens to keep development fast and consistent. In a larger production application, these would likely evolve into dedicated typography and spacing components, alongside semantic tokens as part of a broader design system.
+- **`localStorage` for persistence** — Chosen over `sessionStorage` because it is tab-specific, and over encoding state in the URL because that felt unnecessarily complex for this scope. The dashboard reads pots by `potId` from storage (`lib/pot-storage.ts`, hydration-safe via `useSyncExternalStore`) rather than shared React context, which mirrors fetching from an API on a separate subdomain.
 
----
+- **Base UI for interactions** — Headless primitives give accessible focus, keyboard, and ARIA behaviour without fighting a pre-styled kit. Styling stays in Tailwind + CVA so the UI matches the design closely.
 
-## Best Practices
+- **Token-based utility classes** — Reusable classes on primitive colour tokens kept styling fast and consistent during the challenge. In a larger product, these would likely become semantic design tokens plus dedicated typography and spacing components.
 
-### Content-led development
+- **Journey before polish** — The full create → preview path was prioritised early so functionality and information architecture were proven before investing in animation and visual refinement under time pressure.
 
-The initial focus was getting the full user journey and logic working end-to-end before introducing styling and polish.
+## Approach
 
-This ensured the core functionality and information architecture were established early whilst reducing the risk of spending too much time on UI before the flow itself was fully working.
+- **Content-led development** — The multi-step flow and routing logic were implemented first with minimal styling, so the core journey worked end-to-end before polish. That reduced the risk of over-investing in UI before the architecture was sound.
 
-### Semantic HTML
+- **Semantic HTML, then components** — Screens started as semantic markup aligned to the design. As patterns repeated, shared pieces moved into `components/ui` (primitives + CVA variants) and `components/custom` (app-specific), with Base UI replacing ad-hoc interactive markup where it helped.
 
-Initially, components were built using semantic HTML whilst establishing the layout structure and matching the design.
+- **Incremental commits** — [Gitmoji](https://gitmoji.dev/) conventions keep the history scannable for reviewers and reflect how I’d slice work in a team setting (small, focused changes). See [commit history](https://github.com/pugoverflow/pot-creation-journey/commits/main/).
 
-This helped keep accessibility in mind from the start and avoided unnecessary code bloat and premature abstraction.
+## Storybook
 
-### DRY (Don't Repeat Yourself)
-
-Before introducing styling, I reviewed the design to identify elements that were likely to become reusable across the application.
-
-As patterns started repeating, those elements were extracted into reusable components and replaced with Base UI primitives, with variants added using CVA where appropriate. This helped avoid duplicating styles and logic throughout the codebase, making components easier to maintain and govern consistently.
-
-In a production environment, these components could evolve into a separate component library as part of a larger design system.
-
-### Incremental approach
-
-To help make my thought process easier to follow during review, I’ve been using the conventions from [gitmoji.dev](https://gitmoji.dev/) for commit messages.
-
-In a production environment, this reflects the sort of incremental development workflow typically seen alongside CI/CD practices.
-
-Commit history:
-
-https://github.com/pugoverflow/pot-creation-journey/commits/main/
-
----
-
-## TODO
-
-- Add unit and integration tests
+Personal stretch goal—documents UI primitives and custom components in isolation from the app flow.
