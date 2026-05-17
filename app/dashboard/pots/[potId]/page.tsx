@@ -105,7 +105,7 @@ export default function PotPreviewPage() {
         "
       >
         <div
-          className="page-container relative z-10 flex flex-col gap-6 py-8"
+          className="page-container relative z-10 flex flex-col gap-6"
         >
           <motion.section
             aria-label="Pot actions"
