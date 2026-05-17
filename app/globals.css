@@ -28,6 +28,7 @@
   --color-grey-95: #e9e8fc;
   --color-grey-95-selected: #fffbe6;
   --color-grey-98: #f9fafb;
+  --color-orange-48: #f5b400;
   --color-rose-52: #f2167d;
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
@@ -105,6 +106,7 @@
 
 /* Reusable typography and component variants */
 @layer components {
+
   /* Headings */
   .type-h1 {
     color: var(--color-blue-20);
@@ -252,5 +254,24 @@
     font-weight: var(--font-weight-bold);
     letter-spacing: 0;
     line-height: var(--text-pot-value-large-line-height);
+  }
+
+  /* Ratings */
+  .type-rating {
+    color: var(--color-orange-48);
+    font-family: var(--font-2);
+    font-size: var(--text-rating-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--text-rating-letter-spacing);
+    line-height: var(--text-rating-line-height);
+  }
+
+  .type-review {
+    color: var(--color-azure-34);
+    font-family: var(--font-2);
+    font-size: var(--text-review-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-review-line-height);
   }
 }
