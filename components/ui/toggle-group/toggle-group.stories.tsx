@@ -27,32 +27,36 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  render: () => {
-    const [value, setValue] = useState<string | null>("travel");
+function DefaultStory() {
+  const [value, setValue] = useState<string | null>("travel");
 
-    return (
-      <ToggleGroup
-        ariaLabel="Pot type"
-        options={options}
-        value={value}
-        onValueChange={setValue}
-      />
-    );
-  },
+  return (
+    <ToggleGroup
+      ariaLabel="Pot type"
+      options={options}
+      value={value}
+      onValueChange={setValue}
+    />
+  );
+}
+
+function NoneSelectedStory() {
+  const [value, setValue] = useState<string | null>(null);
+
+  return (
+    <ToggleGroup
+      ariaLabel="Pot type"
+      options={options}
+      value={value}
+      onValueChange={setValue}
+    />
+  );
+}
+
+export const Default: Story = {
+  render: DefaultStory,
 };
 
 export const NoneSelected: Story = {
-  render: () => {
-    const [value, setValue] = useState<string | null>(null);
-
-    return (
-      <ToggleGroup
-        ariaLabel="Pot type"
-        options={options}
-        value={value}
-        onValueChange={setValue}
-      />
-    );
-  },
+  render: NoneSelectedStory,
 };

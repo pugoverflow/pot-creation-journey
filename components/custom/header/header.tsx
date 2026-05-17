@@ -50,7 +50,7 @@ export function Header() {
                             </Button>
 
                             <div className="flex justify-center">
-                                <Logo isLight height={34} />
+                                <Logo isLight height={34} priority />
                             </div>
 
                             <div aria-hidden="true" />

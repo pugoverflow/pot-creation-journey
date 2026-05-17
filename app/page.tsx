@@ -165,7 +165,7 @@ export default function HomePage() {
             alt="People celebrating together"
             width={800}
             height={800}
-            loading="lazy"
+            priority
             className="size-full object-cover"
           />
         </div>

@@ -25,32 +25,36 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  render: () => {
-    const [value, setValue] = useState("gb");
+function DefaultStory() {
+  const [value, setValue] = useState("gb");
 
-    return (
-      <Select
-        label="Country"
-        value={value}
-        onValueChange={setValue}
-        options={countryOptions}
-      />
-    );
-  },
+  return (
+    <Select
+      label="Country"
+      value={value}
+      onValueChange={setValue}
+      options={countryOptions}
+    />
+  );
+}
+
+function WithoutLabelStory() {
+  const [value, setValue] = useState<string | undefined>();
+
+  return (
+    <Select
+      value={value}
+      onValueChange={setValue}
+      options={countryOptions}
+      placeholder="Choose country"
+    />
+  );
+}
+
+export const Default: Story = {
+  render: DefaultStory,
 };
 
 export const WithoutLabel: Story = {
-  render: () => {
-    const [value, setValue] = useState<string | undefined>();
-
-    return (
-      <Select
-        value={value}
-        onValueChange={setValue}
-        options={countryOptions}
-        placeholder="Choose country"
-      />
-    );
-  },
+  render: WithoutLabelStory,
 };

@@ -7,16 +7,15 @@ import {
   Palette,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 
 import { AnimatedAmount } from "@/components/custom/animated-amount/animated-amount";
 import { SignupModal } from "@/components/custom/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
 import { stepEnter } from "@/lib/motion";
-import { getPotSnapshot } from "@/lib/pot-storage";
 import { socials } from "@/lib/socials";
-import type { Pot } from "@/types/pot";
+import { usePot } from "@/lib/pot-storage";
 
 const potActions = [
   {
@@ -39,21 +38,7 @@ const potActions = [
 export default function PotPreviewPage() {
   const params = useParams<{ potId: string }>();
 
-  const potSnapshot = useSyncExternalStore(
-    () => () => {},
-    () => getPotSnapshot(params.potId),
-    () => null
-  );
-
-  const pot = useMemo((): Pot | null => {
-    if (!potSnapshot) return null;
-
-    try {
-      return JSON.parse(potSnapshot) as Pot;
-    } catch {
-      return null;
-    }
-  }, [potSnapshot]);
+  const pot = usePot(params.potId);
 
   const [isSignupOpen, setIsSignupOpen] =
     useState(false);
