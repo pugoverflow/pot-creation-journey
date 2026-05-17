@@ -19,11 +19,14 @@
   --font-weight-semi-bold: 600;
 
   /* Colours */
+  --color-azure-11: #0f172a;
   --color-azure-34: #4b5563;
   --color-azure-65: #9ca3af;
   --color-blue-20: #1e1b4b;
   --color-blue-23: #1b0273;
   --color-cyan-37: #0d9baf;
+  --color-grey-46: #6b7280;
+  --color-grey-91: #e5e7eb;
   --color-grey-94: #ececf1;
   --color-grey-95: #e9e8fc;
   --color-grey-95-selected: #fffbe6;
@@ -82,6 +85,17 @@
 
   --text-pot-value-line-height: 60px;
   --text-pot-value-size: 57.9px;
+
+  /* Dialog typography */
+  --text-dialog-title-letter-spacing: -0.2px;
+  --text-dialog-title-line-height: 28px;
+  --text-dialog-title-size: 20px;
+
+  --text-dialog-description-line-height: 20px;
+  --text-dialog-description-size: 14px;
+
+  --text-dialog-legal-line-height: 18px;
+  --text-dialog-legal-size: 12px;
 }
 
 /* Base page styles */
@@ -273,5 +287,42 @@
     font-weight: var(--font-weight-regular);
     letter-spacing: 0;
     line-height: var(--text-review-line-height);
+  }
+
+  /* Dialog */
+  .type-dialog-title {
+    color: var(--color-azure-11);
+    font-family: var(--font-1);
+    font-size: var(--text-dialog-title-size);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--text-dialog-title-letter-spacing);
+    line-height: var(--text-dialog-title-line-height);
+    text-align: center;
+  }
+
+  .type-dialog-description {
+    color: var(--color-grey-46);
+    font-family: var(--font-1);
+    font-size: var(--text-dialog-description-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-dialog-description-line-height);
+    text-align: center;
+  }
+
+  .type-dialog-legal {
+    color: var(--color-grey-46);
+    font-family: var(--font-1);
+    font-size: var(--text-dialog-legal-size);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0;
+    line-height: var(--text-dialog-legal-line-height);
+    padding-bottom: 0.75px;
+    text-align: center;
+  }
+
+  .type-dialog-link {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
   }
 }

@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Logo } from "@/components/logo";
-import { SignupModal } from "@/components/signup-modal";
+import { SignupModal } from "@/components/signup-modal/signup-modal";
 
 import {
     headerInnerStyles,

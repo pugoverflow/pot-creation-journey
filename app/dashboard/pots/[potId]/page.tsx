@@ -1,24 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button/button";
-import { SignupModal } from "@/components/signup-modal";
+import { SignupModal } from "@/components/signup-modal/signup-modal";
 import { getPotById } from "@/lib/pot-storage";
 import { socials } from "@/lib/socials";
-import type { Pot } from "@/types/pot";
-
 export default function PotPreviewPage() {
     const params = useParams<{ potId: string }>();
 
-    const [pot, setPot] = useState<Pot | null>(null);
+    const pot = useSyncExternalStore(
+        () => () => {},
+        () => getPotById(params.potId),
+        () => null,
+    );
     const [isSignupOpen, setIsSignupOpen] = useState(false);
-
-    useEffect(() => {
-        const foundPot = getPotById(params.potId);
-        setPot(foundPot);
-    }, [params.potId]);
 
     function handleProtectedAction() {
         setIsSignupOpen(true);
