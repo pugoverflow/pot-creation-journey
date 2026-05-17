@@ -1,25 +1,21 @@
 @import "tailwindcss";
 
-/* Global font aliases from next/font */
 :root {
   --font-sans: var(--font-inter);
   --font-heading: var(--font-montserrat);
 }
 
-/* Primitive design tokens from Figma */
 @theme {
-  /* Fonts */
   --font-1: var(--font-inter);
   --font-2: var(--font-montserrat);
 
-  /* Font weights */
   --font-weight-bold: 700;
   --font-weight-medium: 500;
   --font-weight-regular: 400;
   --font-weight-semi-bold: 600;
 
-  /* Colours */
   --color-azure-11: #0f172a;
+  --color-azure-17: #1e2939;
   --color-azure-34: #4b5563;
   --color-azure-65: #9ca3af;
   --color-blue-20: #1e1b4b;
@@ -29,6 +25,7 @@
   --color-grey-91: #e5e7eb;
   --color-grey-94: #ececf1;
   --color-grey-95: #e9e8fc;
+  --color-grey-95-40: #e9e8fc66;
   --color-grey-95-selected: #fffbe6;
   --color-grey-98: #f9fafb;
   --color-orange-48: #f5b400;
@@ -36,7 +33,6 @@
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
 
-  /* Spacing / sizing */
   --size-button-height: 46px;
   --size-button-icon: 46px;
   --size-button-padding-x: 40px;
@@ -44,7 +40,6 @@
   --size-button-radius: 40px;
   --size-border-width: 1px;
 
-  /* Heading typography */
   --text-h1-letter-spacing: -0.96px;
   --text-h1-line-height: 52.8px;
   --text-h1-size: 48px;
@@ -56,7 +51,6 @@
   --text-h5-line-height: 24px;
   --text-h5-size: 16px;
 
-  /* Body typography */
   --text-body-large-line-height: 27px;
   --text-body-large-size: 18px;
 
@@ -66,7 +60,6 @@
   --text-caption-line-height: 14.4px;
   --text-caption-size: 12px;
 
-  /* Control typography */
   --text-button-line-height: 24px;
   --text-button-size: 16px;
 
@@ -76,20 +69,15 @@
   --text-input-line-height: 1;
   --text-input-size: 16px;
 
-  /* Display typography */
   --text-emoji-line-height: 18px;
   --text-emoji-size: 18px;
 
   --text-pot-name-line-height: 60px;
   --text-pot-name-size: 57.9px;
 
-  --text-pot-amount-large-line-height: 80px;
-  --text-pot-amount-large-size: 77.5px;
+  --text-pot-amount-line-height: 80px;
+  --text-pot-amount-size: 77.5px;
 
-  --text-pot-amount-line-height: 60px;
-  --text-pot-amount-size: 57.9px;
-
-  /* Ratings typography */
   --text-rating-letter-spacing: 2px;
   --text-rating-line-height: 24px;
   --text-rating-size: 16px;
@@ -97,7 +85,9 @@
   --text-review-line-height: 24px;
   --text-review-size: 14px;
 
-  /* Dialog typography */
+  --text-invite-title-line-height: 17.5px;
+  --text-invite-title-size: 13.3px;
+
   --text-dialog-title-letter-spacing: -0.2px;
   --text-dialog-title-line-height: 28px;
   --text-dialog-title-size: 20px;
@@ -109,7 +99,6 @@
   --text-dialog-legal-size: 12px;
 }
 
-/* Base page styles */
 @layer base {
   * {
     box-sizing: border-box;
@@ -129,10 +118,7 @@
   }
 }
 
-/* Reusable typography and component variants */
 @layer components {
-
-  /* Headings */
   .type-h1 {
     color: var(--color-blue-20);
     font-family: var(--font-1);
@@ -160,7 +146,6 @@
     line-height: var(--text-h5-line-height);
   }
 
-  /* Body */
   .type-body-large {
     color: var(--color-azure-34);
     font-family: var(--font-2);
@@ -179,16 +164,6 @@
     line-height: var(--text-body-small-line-height);
   }
 
-  .type-caption {
-    color: var(--color-azure-34);
-    font-family: var(--font-2);
-    font-size: var(--text-caption-size);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0;
-    line-height: var(--text-caption-line-height);
-  }
-
-  /* Controls typography */
   .type-button {
     color: var(--color-blue-20);
     font-family: var(--font-2);
@@ -221,40 +196,6 @@
     color: var(--color-azure-65);
   }
 
-  /* Buttons */
-  .button-base {
-    align-items: center;
-    border-radius: var(--size-button-radius);
-    display: inline-flex;
-    height: var(--size-button-height);
-    justify-content: center;
-    padding: var(--size-button-padding-y) var(--size-button-padding-x);
-  }
-
-  .button-link {
-    background-color: var(--color-white);
-    border: var(--size-border-width) solid var(--color-blue-23);
-    color: var(--color-blue-20);
-  }
-
-  .button-cta {
-    background-color: var(--color-yellow-50);
-    border: var(--size-border-width) solid transparent;
-    color: var(--color-blue-20);
-  }
-
-  .button-icon {
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    color: var(--color-white);
-    display: inline-flex;
-    height: var(--size-button-icon);
-    justify-content: center;
-    width: var(--size-button-icon);
-  }
-
-  /* Display */
   .type-emoji {
     font-family: var(--font-1);
     font-size: var(--text-emoji-size);
@@ -275,13 +216,12 @@
   .type-pot-amount {
     color: var(--color-white);
     font-family: var(--font-1);
-    font-size: var(--text-pot-amount-large-size);
+    font-size: var(--text-pot-amount-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0;
-    line-height: var(--text-pot-amount-large-line-height);
+    line-height: var(--text-pot-amount-line-height);
   }
 
-  /* Ratings */
   .type-rating {
     color: var(--color-orange-48);
     font-family: var(--font-2);
@@ -300,7 +240,15 @@
     line-height: var(--text-review-line-height);
   }
 
-  /* Dialog */
+  .type-invite-title {
+    color: var(--color-azure-17);
+    font-family: var(--font-1);
+    font-size: var(--text-invite-title-size);
+    font-weight: var(--font-weight-semi-bold);
+    letter-spacing: 0;
+    line-height: var(--text-invite-title-line-height);
+  }
+
   .type-dialog-title {
     color: var(--color-azure-11);
     font-family: var(--font-1);

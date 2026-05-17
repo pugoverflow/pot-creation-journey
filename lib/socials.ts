@@ -1,38 +1,47 @@
+import type { LucideIcon } from "lucide-react";
+
+import {
+
+    Mail,
+    MessageCircle,
+    QrCode,
+} from "lucide-react";
+
 type Social = {
     id: string;
     label: string;
-    icon: string;
+    icon: LucideIcon;
 };
 
 export const socials: Social[] = [
     {
         id: "email",
         label: "Email",
-        icon: "",
+        icon: Mail,
     },
     {
         id: "qr-code",
         label: "QR code",
-        icon: "",
+        icon: QrCode,
     },
     {
         id: "whatsapp",
         label: "WhatsApp",
-        icon: "",
+        icon: MessageCircle,
     },
     {
         id: "facebook",
         label: "Facebook",
-        icon: "",
+        icon: MessageCircle,
     },
     {
         id: "instagram",
         label: "Instagram",
-        icon: "",
+        icon: MessageCircle,
     },
     {
         id: "x",
         label: "X",
-        icon: "",
+        icon: MessageCircle,
     },
 ];
