@@ -3,13 +3,6 @@
 import { Select as BaseSelect } from "@base-ui/react/select";
 import { Check, ChevronDown } from "lucide-react";
 
-import {
-  selectIconStyles,
-  selectItemStyles,
-  selectPopupStyles,
-  selectTriggerStyles,
-} from "./select.styles";
-
 type Option = {
   label: string;
   value: string;
@@ -48,25 +41,28 @@ export function Select({
         </BaseSelect.Label>
       )}
 
-      <BaseSelect.Trigger className={selectTriggerStyles()}>
+      <BaseSelect.Trigger className="flex h-[50px] w-full items-center justify-between surface-field px-[14px] py-3 text-left type-button">
         <BaseSelect.Value>
           {selectedLabel}
         </BaseSelect.Value>
 
         <BaseSelect.Icon>
-          <ChevronDown size={16} className={selectIconStyles()} />
+          <ChevronDown
+            size={16}
+            className="text-[var(--color-grey-46)]"
+          />
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
 
       <BaseSelect.Portal>
         <BaseSelect.Positioner className="z-50">
-          <BaseSelect.Popup className={selectPopupStyles()}>
+          <BaseSelect.Popup className="mt-1 w-[var(--anchor-width)] overflow-hidden surface-field p-1 shadow-elevated">
             <BaseSelect.List>
               {options.map((option) => (
                 <BaseSelect.Item
                   key={option.value}
                   value={option.value}
-                  className={selectItemStyles()}
+                  className="flex cursor-pointer items-center justify-between rounded-[8px] px-3 py-2 outline-none hover:bg-[var(--color-grey-98)]"
                 >
                   <BaseSelect.ItemText>
                     {option.label}

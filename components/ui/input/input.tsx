@@ -2,12 +2,6 @@
 
 import { Input as BaseInput } from "@base-ui/react/input";
 
-import {
-  inputIconStyles,
-  inputStyles,
-  inputWrapperStyles,
-} from "./input.styles";
-
 type InputProps =
   React.ComponentProps<typeof BaseInput> & {
     icon?: React.ReactNode;
@@ -19,17 +13,19 @@ export function Input({
   ...props
 }: InputProps) {
   return (
-    <div className={inputWrapperStyles()}>
+    <div className="flex items-center gap-3 rounded-[12px] border border-[var(--color-grey-94)] bg-white px-4 py-3 transition-all focus-within:border-[var(--color-yellow-50)] focus-within:shadow-focus">
       {icon && (
-        <span className={inputIconStyles()}>
+        <span className="shrink-0 text-[var(--color-azure-65)]">
           {icon}
         </span>
       )}
 
       <BaseInput
-        className={inputStyles({
-          className,
-        })}
+        className={
+          className
+            ? `w-full border-0 bg-transparent outline-none placeholder:text-[var(--color-azure-65)] type-input ${className}`
+            : "w-full border-0 bg-transparent outline-none placeholder:text-[var(--color-azure-65)] type-input"
+        }
         {...props}
       />
     </div>

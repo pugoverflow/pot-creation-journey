@@ -12,13 +12,6 @@ import { Dialog } from "@/components/ui/dialog/dialog";
 import { Select } from "@/components/ui/select/select";
 import { Separator } from "@/components/ui/separator/separator";
 
-import {
-  signupModalButtonsStyles,
-  signupModalContentStyles,
-  signupModalLegalLinkStyles,
-  signupModalLegalStyles,
-} from "./signup-modal.styles";
-
 type SignupModalProps = {
   open: boolean;
   onClose: () => void;
@@ -42,8 +35,8 @@ export function SignupModal({
       title="Sign in to start collecting"
       description="You can either use your Apple account or your email address."
     >
-      <div className={signupModalContentStyles()}>
-        <div className={signupModalButtonsStyles()}>
+      <div className="mt-4 stack gap-4">
+        <div className="stack gap-3">
           <Select
             label="Country"
             value={country}
@@ -77,13 +70,13 @@ export function SignupModal({
           </Button>
         </div>
 
-        <p className={signupModalLegalStyles()}>
+        <p className="type-dialog-legal">
           By signing up, you agree to our{" "}
-          <a href="#" className={signupModalLegalLinkStyles()}>
+          <a href="#" className="type-dialog-link">
             Terms of Service
           </a>{" "}
           and{" "}
-          <a href="#" className={signupModalLegalLinkStyles()}>
+          <a href="#" className="type-dialog-link">
             Privacy Policy
           </a>
           .

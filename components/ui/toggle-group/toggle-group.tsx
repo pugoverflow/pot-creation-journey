@@ -3,11 +3,6 @@
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup as BaseToggleGroup } from "@base-ui/react/toggle-group";
 
-import {
-  toggleGroupItemStyles,
-  toggleGroupStyles,
-} from "./toggle-group.styles";
-
 type ToggleGroupOption = {
   id: string;
   label: string;
@@ -38,7 +33,7 @@ export function ToggleGroup({
         }
       }}
       aria-label={ariaLabel}
-      className={toggleGroupStyles()}
+      className="grid grid-cols-1 gap-[14px] sm:grid-cols-2 lg:grid-cols-3"
     >
       {options.map((option) => {
         const isSelected = value === option.id;
@@ -47,9 +42,11 @@ export function ToggleGroup({
           <Toggle
             key={option.id}
             value={option.id}
-            className={toggleGroupItemStyles({
-              selected: isSelected,
-            })}
+            className={
+              isSelected
+                ? "flex min-h-16 w-full flex-col items-center justify-center gap-[3.2px] rounded-[12px] border border-[var(--color-yellow-50)] bg-[var(--color-grey-95-selected)] px-[6px] py-2 shadow-focus transition-all"
+                : "flex min-h-16 w-full flex-col items-center justify-center gap-[3.2px] rounded-[12px] border border-[var(--color-grey-98)] bg-[var(--color-grey-94)] px-[6px] py-2 transition-all"
+            }
           >
             {option.icon && (
               <span className="type-emoji">
