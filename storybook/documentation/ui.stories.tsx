@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 function UiDocumentation() {
   return (
     <article className="max-w-3xl space-y-4">
-      <h1 className="type-h5">UI primitives</h1>
+      <h1 className="type-labels">UI primitives</h1>
       <p className="type-body-large">
         These components live in{" "}
         <code className="type-body-small">components/ui</code>. They are base
@@ -30,8 +30,8 @@ function UiDocumentation() {
         </a>{" "}
         and styled using typography and layout utility classes from{" "}
         <code className="type-body-small">app/globals.css</code> (for example{" "}
-        <code className="type-body-small">type-button</code>,{" "}
-        <code className="type-body-small">type-cta-button</code>,{" "}
+        <code className="type-body-small">type-button-default</code>,{" "}
+        <code className="type-body-small">type-button-cta</code>,{" "}
         <code className="type-body-small">type-input</code>).
       </p>
       <p className="type-body-large">

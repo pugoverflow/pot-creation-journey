@@ -31,12 +31,12 @@
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
 
-  --text-h1-letter-spacing: -0.96px;
-  --text-h1-line-height: 52.8px;
-  --text-h1-size: 48px;
+  --text-homepage-title-letter-spacing: -0.96px;
+  --text-homepage-title-line-height: 52.8px;
+  --text-homepage-title-size: 48px;
 
-  --text-h5-line-height: 24px;
-  --text-h5-size: 16px;
+  --text-labels-line-height: 24px;
+  --text-labels-size: 16px;
 
   --text-body-large-line-height: 27px;
   --text-body-large-size: 18px;
@@ -47,8 +47,8 @@
   --text-button-line-height: 24px;
   --text-button-size: 16px;
 
-  --text-cta-button-line-height: 24px;
-  --text-cta-button-size: 15.4px;
+  --text-button-cta-line-height: 24px;
+  --text-button-cta-size: 15.4px;
 
   --text-input-line-height: 1;
   --text-input-size: 16px;
@@ -62,15 +62,15 @@
   --text-pot-amount-line-height: 80px;
   --text-pot-amount-size: 77.5px;
 
-  --text-rating-letter-spacing: 2px;
-  --text-rating-line-height: 24px;
-  --text-rating-size: 16px;
+  --text-social-proof-stars-letter-spacing: 2px;
+  --text-social-proof-stars-line-height: 24px;
+  --text-social-proof-stars-size: 16px;
 
-  --text-review-line-height: 24px;
-  --text-review-size: 14px;
+  --text-social-proof-caption-line-height: 24px;
+  --text-social-proof-caption-size: 14px;
 
-  --text-invite-title-line-height: 17.5px;
-  --text-invite-title-size: 13.3px;
+  --text-pot-invite-title-line-height: 17.5px;
+  --text-pot-invite-title-size: 13.3px;
 
   --text-dialog-title-letter-spacing: -0.2px;
   --text-dialog-title-line-height: 28px;
@@ -144,22 +144,22 @@
     -webkit-mask-size: contain;
   }
 
-  .type-h1 {
+  .type-homepage-title {
     color: var(--color-blue-20);
     font-family: var(--font-1);
-    font-size: var(--text-h1-size);
+    font-size: var(--text-homepage-title-size);
     font-weight: var(--font-weight-bold);
-    letter-spacing: var(--text-h1-letter-spacing);
-    line-height: var(--text-h1-line-height);
+    letter-spacing: var(--text-homepage-title-letter-spacing);
+    line-height: var(--text-homepage-title-line-height);
   }
 
-  .type-h5 {
+  .type-labels {
     color: var(--color-blue-20);
     font-family: var(--font-1);
-    font-size: var(--text-h5-size);
+    font-size: var(--text-labels-size);
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0;
-    line-height: var(--text-h5-line-height);
+    line-height: var(--text-labels-line-height);
   }
 
   .type-body-large {
@@ -180,7 +180,7 @@
     line-height: var(--text-body-small-line-height);
   }
 
-  .type-button {
+  .type-button-default {
     color: var(--color-blue-20);
     font-family: var(--font-2);
     font-size: var(--text-button-size);
@@ -198,13 +198,13 @@
     color: var(--color-white);
   }
 
-  .type-cta-button {
+  .type-button-cta {
     color: var(--color-blue-20);
     font-family: var(--font-1);
-    font-size: var(--text-cta-button-size);
+    font-size: var(--text-button-cta-size);
     font-weight: var(--font-weight-medium);
     letter-spacing: 0;
-    line-height: var(--text-cta-button-line-height);
+    line-height: var(--text-button-cta-line-height);
     text-align: center;
   }
 
@@ -247,31 +247,31 @@
     line-height: var(--text-pot-amount-line-height);
   }
 
-  .type-rating {
+  .type-social-proof-stars {
     color: var(--color-orange-48);
     font-family: var(--font-2);
-    font-size: var(--text-rating-size);
+    font-size: var(--text-social-proof-stars-size);
     font-weight: var(--font-weight-regular);
-    letter-spacing: var(--text-rating-letter-spacing);
-    line-height: var(--text-rating-line-height);
+    letter-spacing: var(--text-social-proof-stars-letter-spacing);
+    line-height: var(--text-social-proof-stars-line-height);
   }
 
-  .type-review {
+  .type-social-proof-caption {
     color: var(--color-azure-34);
     font-family: var(--font-2);
-    font-size: var(--text-review-size);
+    font-size: var(--text-social-proof-caption-size);
     font-weight: var(--font-weight-regular);
     letter-spacing: 0;
-    line-height: var(--text-review-line-height);
+    line-height: var(--text-social-proof-caption-line-height);
   }
 
-  .type-invite-title {
+  .type-pot-invite-title {
     color: var(--color-azure-17);
     font-family: var(--font-1);
-    font-size: var(--text-invite-title-size);
+    font-size: var(--text-pot-invite-title-size);
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0;
-    line-height: var(--text-invite-title-line-height);
+    line-height: var(--text-pot-invite-title-line-height);
   }
 
   .type-dialog-title {

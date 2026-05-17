@@ -7,7 +7,7 @@ export type SocialIconProps = Omit<AssetIconProps, "src">;
 export function FacebookIcon(props: SocialIconProps) {
   return (
     <AssetIcon
-      src={assets.icons.social.facebook}
+      src={assets.thirdParty.facebook}
       {...props}
     />
   );
@@ -16,7 +16,7 @@ export function FacebookIcon(props: SocialIconProps) {
 export function InstagramIcon(props: SocialIconProps) {
   return (
     <AssetIcon
-      src={assets.icons.social.instagram}
+      src={assets.thirdParty.instagram}
       {...props}
     />
   );
@@ -25,7 +25,7 @@ export function InstagramIcon(props: SocialIconProps) {
 export function WhatsAppIcon(props: SocialIconProps) {
   return (
     <AssetIcon
-      src={assets.icons.social.whatsapp}
+      src={assets.thirdParty.whatsapp}
       {...props}
     />
   );
@@ -33,6 +33,6 @@ export function WhatsAppIcon(props: SocialIconProps) {
 
 export function XIcon(props: SocialIconProps) {
   return (
-    <AssetIcon src={assets.icons.social.x} {...props} />
+    <AssetIcon src={assets.thirdParty.x} {...props} />
   );
 }

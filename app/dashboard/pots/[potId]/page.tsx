@@ -153,7 +153,7 @@ export default function PotPreviewPage() {
           >
             <h2
               id="invite-heading"
-              className="type-invite-title"
+              className="type-pot-invite-title"
             >
               Invite people to pay
             </h2>

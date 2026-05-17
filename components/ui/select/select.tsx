@@ -36,12 +36,12 @@ export function Select({
       }}
     >
       {label && (
-        <BaseSelect.Label className="type-h5">
+        <BaseSelect.Label className="type-labels">
           {label}
         </BaseSelect.Label>
       )}
 
-      <BaseSelect.Trigger className="flex h-[50px] w-full items-center justify-between surface-field px-[14px] py-3 text-left type-button">
+      <BaseSelect.Trigger className="flex h-[50px] w-full items-center justify-between surface-field px-[14px] py-3 text-left type-button-default">
         <BaseSelect.Value>
           {selectedLabel}
         </BaseSelect.Value>

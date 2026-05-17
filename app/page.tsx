@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
 import { ToggleGroup } from "@/components/ui/toggle-group/toggle-group";
+import { assets } from "@/lib/assets";
 import { categories } from "@/lib/categories";
 import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
@@ -72,7 +73,7 @@ export default function HomePage() {
       >
         <h1
           id="hero-heading"
-          className="type-h1"
+          className="type-homepage-title"
         >
           Collect money without sharing
           bank details.
@@ -98,7 +99,7 @@ export default function HomePage() {
             Create a pot
           </h2>
 
-          <h5 className="type-h5">
+          <h5 className="type-labels">
             What are you collecting
             for?
           </h5>
@@ -114,7 +115,7 @@ export default function HomePage() {
             options={categoryOptions}
           />
 
-          <h5 className="type-h5">
+          <h5 className="type-labels">
             What should we call the
             pot?
           </h5>
@@ -147,11 +148,11 @@ export default function HomePage() {
           </Button>
 
           <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-center">
-            <p className="type-rating">
+            <p className="type-social-proof-stars">
               ★★★★★
             </p>
 
-            <p className="type-review">
+            <p className="type-social-proof-caption">
               Trusted by 3000+ App
               Store reviewers
             </p>
@@ -160,7 +161,7 @@ export default function HomePage() {
 
         <div className="relative h-full min-h-[280px] overflow-hidden rounded-[20px]">
           <Image
-            src="/cheerleader.jpg"
+            src={assets.brand.cheerleader}
             alt="People celebrating together"
             width={800}
             height={800}

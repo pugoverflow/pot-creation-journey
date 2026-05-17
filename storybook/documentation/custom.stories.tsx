@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 function CustomDocumentation() {
   return (
     <article className="max-w-3xl space-y-4">
-      <h1 className="type-h5">Custom components</h1>
+      <h1 className="type-labels">Custom components</h1>
       <p className="type-body-large">
         These components live in{" "}
         <code className="type-body-small">components/custom</code>. They are

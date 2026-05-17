@@ -28,13 +28,13 @@ const sections: TypographySection[] = [
     intro: "Page and section headings on the marketing homepage and forms.",
     samples: [
       {
-        className: "type-h1",
-        description: "Primary page title.",
+        className: "type-homepage-title",
+        description: "Homepage hero title.",
         usage: "Homepage hero (`app/page.tsx`).",
         sample: "Create a pot in seconds",
       },
       {
-        className: "type-h5",
+        className: "type-labels",
         description: "Section labels and compact headings.",
         usage: "Form section titles, select labels.",
         sample: "What are you collecting for?",
@@ -64,15 +64,22 @@ const sections: TypographySection[] = [
     intro: "Text styles used by UI primitives.",
     samples: [
       {
-        className: "type-button",
-        description: "Default button label.",
-        usage: "Button — `link`, `tertiary`, `primary`, and `secondary` variants.",
+        className: "type-button-default",
+        description: "Outline and neutral button label.",
+        usage: "Button `link` and `tertiary` variants; select trigger.",
         sample: "Continue",
       },
       {
-        className: "type-cta-button",
-        description: "Call-to-action button label.",
-        usage: "Button — `cta` variant.",
+        className: "type-button-on-color",
+        description: "Label on filled (coloured) buttons.",
+        usage: "Button `primary` and `secondary` variants.",
+        sample: "Share pot",
+        darkBackground: true,
+      },
+      {
+        className: "type-button-cta",
+        description: "Yellow CTA button label.",
+        usage: "Button `cta` variant; homepage “Create your pot”.",
         sample: "Sign up",
       },
       {
@@ -108,9 +115,9 @@ const sections: TypographySection[] = [
         darkBackground: true,
       },
       {
-        className: "type-invite-title",
+        className: "type-pot-invite-title",
         description: "Heading above invite / share.",
-        usage: "Dashboard invite section.",
+        usage: "Dashboard pot invite section.",
         sample: "Invite your group",
       },
     ],
@@ -120,16 +127,16 @@ const sections: TypographySection[] = [
     intro: "Trust strip on the homepage.",
     samples: [
       {
-        className: "type-rating",
-        description: "Star rating figure.",
-        usage: "Homepage rating.",
-        sample: "4.8",
+        className: "type-social-proof-stars",
+        description: "Star row in the trust strip.",
+        usage: "Homepage social proof (★★★★★).",
+        sample: "★★★★★",
       },
       {
-        className: "type-review",
-        description: "Customer quote.",
-        usage: "Homepage testimonial.",
-        sample: "“Really easy to set up and share with friends.”",
+        className: "type-social-proof-caption",
+        description: "Supporting line under the stars.",
+        usage: "Homepage social proof caption.",
+        sample: "Trusted by 3000+ App Store reviewers",
       },
     ],
   },
@@ -273,7 +280,7 @@ function TypographyShowcase() {
       {sections.map((section) => (
         <section key={section.title} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <h2 className="type-h5">{section.title}</h2>
+            <h2 className="type-labels">{section.title}</h2>
             <p className="type-body-large">{section.intro}</p>
           </div>
           {section.samples.length > 0 ? (

@@ -22,8 +22,8 @@ export function Logo({
         <Image
             src={
                 isLight
-                    ? assets.logos.light
-                    : assets.logos.default
+                    ? assets.brand.fullLogoLight
+                    : assets.brand.fullLogoNoStrap
             }
             alt="Collctiv"
             width={width}

@@ -54,7 +54,7 @@ export function SignupModal({
             disabled
           >
             <AssetIcon
-              src={assets.icons.apple}
+              src={assets.thirdParty.apple}
               size={20}
             />
             Sign up with Apple

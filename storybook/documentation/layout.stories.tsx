@@ -36,7 +36,7 @@ const samples: LayoutSample[] = [
     description:
       "Soft elevation shadow for cards, modals, and floating panels.",
     usage:
-      "Homepage create-pot card, `Dialog`, select dropdown (`select.styles.ts`).",
+      "Homepage create-pot card, `Dialog`, select dropdown.",
     render: () => (
       <div className="flex flex-wrap items-start justify-center gap-8 bg-[var(--color-grey-98)] p-8">
         <div className="flex w-[200px] flex-col items-center gap-2">
@@ -111,7 +111,7 @@ function LayoutShowcase() {
   return (
     <div className="flex max-w-4xl flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <h2 className="type-h5">Layout & elevation</h2>
+        <h2 className="type-labels">Layout & elevation</h2>
         <p className="type-body-large">
           Layout utilities are defined in{" "}
           <code className="type-body-small">app/globals.css</code> inside{" "}

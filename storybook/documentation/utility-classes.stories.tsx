@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 function UtilityClassesDocumentation() {
   return (
     <article className="max-w-3xl space-y-4">
-      <h1 className="type-h5">Utility classes</h1>
+      <h1 className="type-labels">Utility classes</h1>
       <p className="type-body-large">
         Shared styles live in{" "}
         <code className="type-body-small">app/globals.css</code> inside{" "}

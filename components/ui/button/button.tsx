@@ -22,7 +22,7 @@ const buttonStyles = cva(
           "bg-white",
           "px-10",
           "py-2.5",
-          "type-button",
+          "type-button-default",
         ],
         cta: [
           "h-[46px]",
@@ -30,7 +30,7 @@ const buttonStyles = cva(
           "bg-[var(--color-yellow-50)]",
           "px-10",
           "py-2.5",
-          "type-cta-button",
+          "type-button-cta",
         ],
         icon: [
           "h-[46px]",
@@ -65,7 +65,7 @@ const buttonStyles = cva(
           "border",
           "border-[var(--color-grey-91)]",
           "bg-white",
-          "type-button",
+          "type-button-default",
         ],
         tertiaryIcon: [
           "h-[50px]",
