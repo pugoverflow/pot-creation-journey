@@ -59,14 +59,15 @@ export function Header() {
                             <nav
                                 aria-label="Primary navigation"
                                 className="
-                  flex
-                  flex-wrap
-                  items-center
-                  justify-end
-                  gap-3
-                  sm:flex-nowrap
-                  sm:gap-4
-                "
+                                flex
+                                flex-wrap
+                                items-center
+                                justify-center
+                                gap-3
+                                sm:flex-nowrap
+                                sm:justify-end
+                                sm:gap-4
+                              "
                             >
                                 <button
                                     type="button"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 
 import { Header } from "@/components/header/header";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -31,10 +32,12 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white text-black">
-        <Header logo={<span>Collctiv</span>} />
+      <body className="min-h-full bg-white">
+        <Header />
 
-        {children}
+        <div className="mx-auto w-full max-w-[1440px] px-5 pt-[31px] pb-14 md:px-10 xl:px-[120px]">
+          {children}
+        </div>
       </body>
     </html>
   );

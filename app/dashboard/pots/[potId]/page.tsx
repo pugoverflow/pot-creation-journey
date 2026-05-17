@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
+import { Button } from "@/components/ui/button/button";
 import { SignupModal } from "@/components/signup-modal";
 import { getPotById } from "@/lib/pot-storage";
 import { socials } from "@/lib/socials";
@@ -16,7 +17,6 @@ export default function PotPreviewPage() {
 
     useEffect(() => {
         const foundPot = getPotById(params.potId);
-
         setPot(foundPot);
     }, [params.potId]);
 
@@ -25,45 +25,56 @@ export default function PotPreviewPage() {
     }
 
     return (
-        <main>
-            <div>
-                <p>{pot?.name ?? "Pot not found"}</p>
-            </div>
+        <main className="mx-auto flex w-full max-w-[1200px] flex-col gap-6">
+            <section aria-labelledby="pot-preview-heading">
+                <h1 id="pot-preview-heading" className="type-pot-value">
+                    {pot?.name ?? "Pot not found"}
+                </h1>
+            </section>
 
-            <div>
-                <button type="button" onClick={handleProtectedAction}>
+            <section
+                aria-label="Pot actions"
+                className="flex flex-wrap gap-3"
+            >
+                <Button type="button" variant="cta" onClick={handleProtectedAction}>
                     Collect money
-                </button>
+                </Button>
 
-                <button type="button" onClick={handleProtectedAction}>
+                <Button type="button" variant="link" onClick={handleProtectedAction}>
                     Send money
-                </button>
+                </Button>
 
-                <button type="button" onClick={handleProtectedAction}>
+                <Button type="button" variant="link" onClick={handleProtectedAction}>
                     Customise pot
-                </button>
+                </Button>
 
-                <button type="button" onClick={handleProtectedAction}>
+                <Button type="button" variant="link" onClick={handleProtectedAction}>
                     Menu
-                </button>
-            </div>
+                </Button>
+            </section>
 
-            <div>
-                <p>Invite people to pay</p>
+            <section
+                aria-labelledby="invite-heading"
+                className="flex flex-col gap-4"
+            >
+                <h2 id="invite-heading" className="type-h5">
+                    Invite people to pay
+                </h2>
 
-                <div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {socials.map((social) => (
                         <button
                             key={social.id}
                             type="button"
                             onClick={handleProtectedAction}
+                            className="flex flex-col items-center justify-center gap-2 rounded-[12px] border border-[var(--color-grey-94)] bg-white p-4"
                         >
-                            <span>{social.icon}</span>
-                            <span>{social.label}</span>
+                            <span className="type-emoji">{social.icon}</span>
+                            <span className="type-body-small">{social.label}</span>
                         </button>
                     ))}
                 </div>
-            </div>
+            </section>
 
             <SignupModal
                 open={isSignupOpen}
