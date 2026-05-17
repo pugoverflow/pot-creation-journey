@@ -10,7 +10,7 @@ import { categories } from "@/lib/categories";;
 import { Button } from "@/components/ui/button/button";
 import { savePot } from "@/lib/pot-storage";
 import type { PotCategory } from "@/types/pot";
-import { Pencil } from "lucide-react";
+import { PencilLine } from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
@@ -156,7 +156,7 @@ export default function HomePage() {
               }}
               maxLength={40}
               placeholder="Enter a name for this pot"
-              icon={<Pencil size={18} />}
+              icon={<PencilLine size={18} />}
             />
 
             <Button
