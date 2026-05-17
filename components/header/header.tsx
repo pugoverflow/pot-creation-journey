@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -41,7 +42,7 @@ export function Header() {
                                 className="button-icon"
                                 aria-label="Go back"
                             >
-                                ←
+                                <ChevronLeft size={20} />
                             </button>
 
                             <div className="flex justify-center">
@@ -59,15 +60,15 @@ export function Header() {
                             <nav
                                 aria-label="Primary navigation"
                                 className="
-                                flex
-                                flex-wrap
-                                items-center
-                                justify-center
-                                gap-3
-                                sm:flex-nowrap
-                                sm:justify-end
-                                sm:gap-4
-                              "
+                  flex
+                  flex-wrap
+                  items-center
+                  justify-center
+                  gap-3
+                  sm:flex-nowrap
+                  sm:justify-end
+                  sm:gap-4
+                "
                             >
                                 <button
                                     type="button"
