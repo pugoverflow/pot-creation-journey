@@ -7,15 +7,15 @@ import {
   Palette,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { notFound, useParams } from "next/navigation";
 
 import { AnimatedAmount } from "@/components/custom/animated-amount/animated-amount";
 import { SignupModal } from "@/components/custom/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
 import { stepEnter } from "@/lib/motion";
 import { socials } from "@/lib/socials";
-import { usePot } from "@/lib/pot-storage";
+import { getPotSnapshot, usePot } from "@/lib/pot-storage";
 
 const potActions = [
   {
@@ -40,6 +40,14 @@ export default function PotPreviewPage() {
 
   const pot = usePot(params.potId);
 
+  useEffect(() => {
+    const snapshot = getPotSnapshot(params.potId);
+
+    if (!snapshot || !pot) {
+      notFound();
+    }
+  }, [params.potId, pot]);
+
   const [isSignupOpen, setIsSignupOpen] =
     useState(false);
 
@@ -47,9 +55,24 @@ export default function PotPreviewPage() {
     setIsSignupOpen(true);
   }
 
-  const amount = Number(
-    pot?.amount ?? 0
-  );
+  if (!pot) {
+    return (
+      <main className="flex flex-col">
+        <section
+          aria-labelledby="pot-preview-heading"
+          className="bg-[var(--color-blue-23)]"
+        >
+          <div className="page-container flex min-h-[268px] flex-col items-center justify-center gap-4 py-14 text-center">
+            <h1 id="pot-preview-heading" className="type-pot-name">
+              Loading pot...
+            </h1>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  const amount = Number(pot.amount ?? 0);
 
   return (
     <main className="flex flex-col">
@@ -64,7 +87,7 @@ export default function PotPreviewPage() {
             id="pot-preview-heading"
             className="type-pot-name"
           >
-            {pot ? pot.name : "Loading pot..."}
+            {pot.name}
           </h1>
 
           <AnimatedAmount
