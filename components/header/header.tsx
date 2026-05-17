@@ -4,7 +4,8 @@ import { ChevronLeft } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { Logo } from "@/components/logo";
+import { Logo } from "@/components/logo/logo";
+import { LoginModal } from "@/components/login-modal/login-modal";
 import { SignupModal } from "@/components/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
 
@@ -17,6 +18,9 @@ export function Header() {
     const pathname = usePathname();
     const router = useRouter();
 
+    const [isLoginOpen, setIsLoginOpen] =
+        useState(false);
+
     const [isSignupOpen, setIsSignupOpen] =
         useState(false);
 
@@ -26,10 +30,6 @@ export function Header() {
     const variant = isDashboard
         ? "dashboard"
         : "marketing";
-
-    function handleLogin() {
-        alert("⛔ No functionality yet!");
-    }
 
     return (
         <>
@@ -47,7 +47,7 @@ export function Header() {
                             </Button>
 
                             <div className="flex justify-center">
-                                <Logo isLight />
+                                <Logo isLight height={34} />
                             </div>
 
                             <div aria-hidden="true" />
@@ -60,21 +60,14 @@ export function Header() {
 
                             <nav
                                 aria-label="Primary navigation"
-                                className="
-                  flex
-                  flex-wrap
-                  items-center
-                  justify-center
-                  gap-3
-                  sm:flex-nowrap
-                  sm:justify-end
-                  sm:gap-4
-                "
+                                className="flex flex-wrap items-center justify-center gap-3 sm:flex-nowrap sm:justify-end sm:gap-4"
                             >
                                 <Button
                                     type="button"
                                     variant="link"
-                                    onClick={handleLogin}
+                                    onClick={() =>
+                                        setIsLoginOpen(true)
+                                    }
                                 >
                                     Login
                                 </Button>
@@ -93,6 +86,13 @@ export function Header() {
                     )}
                 </div>
             </header>
+
+            <LoginModal
+                open={isLoginOpen}
+                onClose={() =>
+                    setIsLoginOpen(false)
+                }
+            />
 
             <SignupModal
                 open={isSignupOpen}

@@ -25,7 +25,7 @@ export const selectPopupStyles = cva([
   "border-[var(--color-grey-91)]",
   "bg-white",
   "p-1",
-  "shadow-[0px_4px_24px_0px_#1E1B4B0F]",
+  "shadow-elevated",
 ]);
 
 export const selectItemStyles = cva([

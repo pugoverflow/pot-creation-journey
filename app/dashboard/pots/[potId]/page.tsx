@@ -6,12 +6,15 @@ import {
   MoveUpRight,
   Palette,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { useParams } from "next/navigation";
 
+import { AnimatedAmount } from "@/components/animated-amount/animated-amount";
 import { SignupModal } from "@/components/signup-modal/signup-modal";
 import { Button } from "@/components/ui/button/button";
-import { getPotById } from "@/lib/pot-storage";
+import { stepEnter } from "@/lib/motion";
+import { getPotSnapshot } from "@/lib/pot-storage";
 import { socials } from "@/lib/socials";
 import type { Pot } from "@/types/pot";
 
@@ -33,15 +36,24 @@ const potActions = [
 export default function PotPreviewPage() {
   const params = useParams<{ potId: string }>();
 
-  const [pot, setPot] =
-    useState<Pot | null>(null);
+  const potSnapshot = useSyncExternalStore(
+    () => () => {},
+    () => getPotSnapshot(params.potId),
+    () => null
+  );
+
+  const pot = useMemo((): Pot | null => {
+    if (!potSnapshot) return null;
+
+    try {
+      return JSON.parse(potSnapshot) as Pot;
+    } catch {
+      return null;
+    }
+  }, [potSnapshot]);
 
   const [isSignupOpen, setIsSignupOpen] =
     useState(false);
-
-  useEffect(() => {
-    setPot(getPotById(params.potId));
-  }, [params.potId]);
 
   function handleProtectedAction() {
     setIsSignupOpen(true);
@@ -52,47 +64,31 @@ export default function PotPreviewPage() {
   );
 
   return (
-    <main className="flex w-full flex-col">
+    <main className="flex flex-col">
       <section
         aria-labelledby="pot-preview-heading"
-        className="w-full bg-[var(--color-blue-23)]"
+        className="bg-[var(--color-blue-23)]"
       >
         <div
-          className="
-            mx-auto
-            flex
-            min-h-[268px]
-            w-full
-            max-w-[1440px]
-            flex-col
-            items-center
-            justify-center
-            gap-4
-            px-5
-            py-14
-            text-center
-            md:px-10
-            xl:px-[120px]
-          "
+          className="page-container flex min-h-[268px] flex-col items-center justify-center gap-4 py-14 text-center"
         >
           <h1
             id="pot-preview-heading"
             className="type-pot-name"
           >
-            {pot?.name ??
-              "Pot not found"}
+            {pot ? pot.name : "Loading pot..."}
           </h1>
 
-          <p className="type-pot-amount">
-            £{amount.toFixed(2)}
-          </p>
+          <AnimatedAmount
+            value={amount}
+            className="type-pot-amount"
+          />
         </div>
       </section>
 
       <div
         className="
           relative
-          w-full
           bg-white
           before:absolute
           before:left-0
@@ -106,37 +102,12 @@ export default function PotPreviewPage() {
         "
       >
         <div
-          className="
-            mx-auto
-            flex
-            w-full
-            max-w-[1440px]
-            flex-col
-            gap-6
-            px-5
-            py-8
-            md:px-10
-            xl:px-[120px]
-          "
+          className="page-container relative z-10 flex flex-col gap-6 py-8"
         >
-          <section
+          <motion.section
             aria-label="Pot actions"
-            className="
-              relative
-              z-10
-              mx-auto
-              flex
-              w-fit
-              flex-wrap
-              justify-center
-              gap-4
-              rounded-[10px]
-              border
-              border-[var(--color-grey-94)]
-              bg-white
-              p-4
-              shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A]
-            "
+            {...stepEnter}
+            className="mx-auto flex w-fit flex-wrap justify-center gap-4 rounded-[10px] border border-[var(--color-grey-94)] bg-white p-4 shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A]"
           >
             {potActions.map((action) => {
               const Icon =
@@ -169,21 +140,12 @@ export default function PotPreviewPage() {
             >
               <Ellipsis size={18} />
             </Button>
-          </section>
+          </motion.section>
 
-          <section
+          <motion.section
             aria-labelledby="invite-heading"
-            className="
-              mx-auto
-              flex
-              w-full
-              max-w-[662px]
-              flex-col
-              gap-4
-              rounded-[10px]
-              bg-[var(--color-grey-95-40)]
-              p-5
-            "
+            {...stepEnter}
+            className="mx-auto flex w-full max-w-[662px] flex-col gap-4 rounded-[10px] bg-[var(--color-grey-95-40)] p-5"
           >
             <h2
               id="invite-heading"
@@ -192,14 +154,7 @@ export default function PotPreviewPage() {
               Invite people to pay
             </h2>
 
-            <div
-              className="
-                grid
-                grid-cols-2
-                gap-3
-                lg:grid-cols-6
-              "
-            >
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-6">
               {socials.map((social) => {
                 const Icon =
                   social.icon;
@@ -211,18 +166,7 @@ export default function PotPreviewPage() {
                     onClick={
                       handleProtectedAction
                     }
-                    className="
-                      flex
-                      flex-col
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-[12px]
-                      border
-                      border-[var(--color-grey-94)]
-                      bg-white
-                      p-4
-                    "
+                    className="flex flex-col items-center gap-2 rounded-[12px] border border-[var(--color-grey-94)] bg-white p-4"
                   >
                     <Icon size={20} />
 
@@ -233,7 +177,7 @@ export default function PotPreviewPage() {
                 );
               })}
             </div>
-          </section>
+          </motion.section>
         </div>
       </div>
 

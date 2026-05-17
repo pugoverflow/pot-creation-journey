@@ -2,13 +2,20 @@
 
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { X } from "lucide-react";
+import { motion } from "motion/react";
+
+import {
+    asMotionDivProps,
+    isDialogVisible,
+    subtleTransition,
+} from "@/lib/motion";
 
 type DialogProps = {
     open: boolean;
     onClose: () => void;
     title: string;
     description?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 
 export function Dialog({
@@ -26,9 +33,49 @@ export function Dialog({
             }}
         >
             <BaseDialog.Portal>
-                <BaseDialog.Backdrop className="fixed inset-0 z-50 bg-black/50" />
+                <BaseDialog.Backdrop
+                    className="fixed inset-0 z-50 bg-black/50"
+                    render={(props, state) => (
+                        <motion.div
+                            {...asMotionDivProps(props)}
+                            initial={{ opacity: 0 }}
+                            animate={{
+                                opacity: isDialogVisible(
+                                    state.open,
+                                    state.transitionStatus
+                                )
+                                    ? 1
+                                    : 0,
+                            }}
+                            transition={subtleTransition}
+                        />
+                    )}
+                />
 
-                <BaseDialog.Popup className="fixed left-1/2 top-1/2 z-50 flex w-full max-w-[432px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-[20px] bg-white p-6 shadow-[0px_4px_24px_0px_#1E1B4B0F]">
+                <BaseDialog.Popup
+                    className="shadow-elevated fixed left-1/2 top-1/2 z-50 flex w-full max-w-[432px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-[20px] bg-white p-6"
+                    render={(props, state) => (
+                        <motion.div
+                            {...asMotionDivProps(props)}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{
+                                opacity: isDialogVisible(
+                                    state.open,
+                                    state.transitionStatus
+                                )
+                                    ? 1
+                                    : 0,
+                                y: isDialogVisible(
+                                    state.open,
+                                    state.transitionStatus
+                                )
+                                    ? 0
+                                    : 6,
+                            }}
+                            transition={subtleTransition}
+                        />
+                    )}
+                >
                     <BaseDialog.Close
                         type="button"
                         aria-label="Close dialog"
@@ -38,13 +85,13 @@ export function Dialog({
                     </BaseDialog.Close>
 
 
-                    <div className="flex flex-col items-center gap-2 mt-0">
+                    <div className="flex flex-col gap-2">
                         <BaseDialog.Title className="type-dialog-title">
                             {title}
                         </BaseDialog.Title>
 
                         {description && (
-                            <BaseDialog.Description className="type-dialog-description max-w-[320px]">
+                            <BaseDialog.Description className="type-dialog-description mx-auto max-w-[320px]">
                                 {description}
                             </BaseDialog.Description>
                         )}

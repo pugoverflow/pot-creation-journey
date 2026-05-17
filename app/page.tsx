@@ -65,10 +65,10 @@ export default function HomePage() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-5 pb-14 pt-[31px] md:px-10 xl:px-[120px]">
+    <main className="page-container flex flex-col gap-6 pb-14 pt-[31px]">
       <section
         aria-labelledby="hero-heading"
-        className="flex w-full flex-col gap-3 text-center"
+        className="flex flex-col gap-3 text-center"
       >
         <h1
           id="hero-heading"
@@ -88,114 +88,84 @@ export default function HomePage() {
 
       <section
         aria-labelledby="create-pot-heading"
-        className="flex flex-col gap-6 lg:flex-row"
+        className="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
-        <div className="flex flex-1">
-          <div
-            className="
-              flex
-              w-full
-              flex-col
-              gap-[14px]
-              rounded-[20px]
-              border
-              border-[var(--color-grey-94)]
-              bg-white
-              p-6
-              shadow-[0px_4px_24px_0px_#1E1B4B0F]
-            "
+        <div className="shadow-elevated flex flex-col gap-[14px] rounded-[20px] border border-[var(--color-grey-94)] bg-white p-6">
+          <h2
+            id="create-pot-heading"
+            className="sr-only"
           >
-            <h2
-              id="create-pot-heading"
-              className="sr-only"
-            >
-              Create a pot
-            </h2>
+            Create a pot
+          </h2>
 
-            <h5 className="type-h5">
-              What are you collecting
-              for?
-            </h5>
+          <h5 className="type-h5">
+            What are you collecting
+            for?
+          </h5>
 
-            <ToggleGroup
-              ariaLabel="Select a pot category"
-              value={selectedCategory}
-              onValueChange={(value) =>
-                setSelectedCategory(
-                  value as PotCategory
+          <ToggleGroup
+            ariaLabel="Select a pot category"
+            value={selectedCategory}
+            onValueChange={(value) =>
+              setSelectedCategory(
+                value as PotCategory
+              )
+            }
+            options={categoryOptions}
+          />
+
+          <h5 className="type-h5">
+            What should we call the
+            pot?
+          </h5>
+
+          <Input
+            type="text"
+            value={potName}
+            onChange={(event) => {
+              setPotName(
+                event.target.value.slice(
+                  0,
+                  40
                 )
-              }
-              options={categoryOptions}
-            />
+              );
+            }}
+            maxLength={40}
+            placeholder="Enter a name for this pot"
+            icon={
+              <PencilLine size={18} />
+            }
+          />
 
-            <h5 className="type-h5">
-              What should we call the
-              pot?
-            </h5>
+          <Button
+            type="button"
+            variant="cta"
+            disabled={!isFormValid}
+            onClick={handleCreatePot}
+          >
+            Create your pot
+          </Button>
 
-            <Input
-              type="text"
-              value={potName}
-              onChange={(event) => {
-                setPotName(
-                  event.target.value.slice(
-                    0,
-                    40
-                  )
-                );
-              }}
-              maxLength={40}
-              placeholder="Enter a name for this pot"
-              icon={
-                <PencilLine size={18} />
-              }
-            />
+          <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-center">
+            <p className="type-rating">
+              ★★★★★
+            </p>
 
-            <Button
-              type="button"
-              variant="cta"
-              disabled={!isFormValid}
-              onClick={handleCreatePot}
-            >
-              Create your pot
-            </Button>
-
-            <div
-              className="
-                flex
-                flex-col
-                items-center
-                justify-center
-                gap-2
-                text-center
-                sm:flex-row
-              "
-            >
-              <p className="type-rating">
-                ★★★★★
-              </p>
-
-              <p className="type-review">
-                Trusted by 3000+ App
-                Store reviewers
-              </p>
-            </div>
+            <p className="type-review">
+              Trusted by 3000+ App
+              Store reviewers
+            </p>
           </div>
         </div>
 
-        <div className="flex flex-1">
+        <div className="relative h-full min-h-[280px] overflow-hidden rounded-[20px]">
           <Image
             src="/cheerleader.jpg"
             alt="People celebrating together"
             width={800}
             height={800}
-            priority
-            className="
-              h-full
-              w-full
-              rounded-[20px]
-              object-cover
-            "
+            loading="lazy"
+            className="size-full object-cover"
           />
         </div>
       </section>

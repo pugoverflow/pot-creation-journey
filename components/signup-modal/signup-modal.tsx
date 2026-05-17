@@ -21,10 +21,6 @@ type SignupModalProps = {
   onClose: () => void;
 };
 
-function handleSignup() {
-  alert("⛔ No functionality yet!");
-}
-
 function AppleIcon() {
   return (
     <svg
@@ -71,7 +67,7 @@ export function SignupModal({
           <Button
             type="button"
             className="w-full"
-            onClick={handleSignup}
+            disabled
           >
             <AppleIcon />
             Sign up with Apple
@@ -80,7 +76,7 @@ export function SignupModal({
           <Button
             type="button"
             className="w-full"
-            onClick={handleSignup}
+            disabled
           >
             <Mail size={20} aria-hidden="true" />
             Sign up with email

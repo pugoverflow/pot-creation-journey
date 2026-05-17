@@ -101,6 +101,14 @@
 }
 
 @layer components {
+  .page-container {
+    @apply mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-[120px];
+  }
+
+  .shadow-elevated {
+    @apply shadow-[0px_4px_24px_0px_#1E1B4B0F];
+  }
+
   .type-h1 {
     color: var(--color-blue-20);
     font-family: var(--font-1);

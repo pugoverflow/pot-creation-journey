@@ -125,5 +125,4 @@ https://github.com/pugoverflow/pot-creation-journey/commits/main/
 
 ## TODO
 
-- Add subtle UI animations and transitions using Motion
-- Add unit and integration tests using Vitest
+- Add unit and integration tests
