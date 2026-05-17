@@ -2,11 +2,11 @@
 
 import { Mail } from "lucide-react";
 
+import { Button } from "@/components/ui/button/button";
 import { Dialog } from "@/components/ui/dialog/dialog";
 import { Separator } from "@/components/ui/separator/separator";
 
 import {
-    signupModalButtonStyles,
     signupModalButtonsStyles,
     signupModalContentStyles,
     signupModalLegalLinkStyles,
@@ -51,23 +51,23 @@ export function SignupModal({
                 <div className={signupModalButtonsStyles()}>
                     <Separator />
 
-                    <button
+                    <Button
                         type="button"
-                        className={signupModalButtonStyles()}
+                        className="w-full"
                         onClick={handleSignup}
                     >
                         <AppleIcon />
                         Sign up with Apple
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                         type="button"
-                        className={signupModalButtonStyles()}
+                        className="w-full"
                         onClick={handleSignup}
                     >
                         <Mail size={20} aria-hidden="true" />
                         Sign up with email
-                    </button>
+                    </Button>
                 </div>
 
                 <p className={signupModalLegalStyles()}>

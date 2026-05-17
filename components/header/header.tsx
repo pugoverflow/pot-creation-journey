@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { Logo } from "@/components/logo";
 import { SignupModal } from "@/components/signup-modal/signup-modal";
+import { Button } from "@/components/ui/button/button";
 
 import {
     headerInnerStyles,
@@ -36,14 +37,14 @@ export function Header() {
                 <div className={headerInnerStyles({ variant })}>
                     {isDashboard ? (
                         <>
-                            <button
+                            <Button
                                 type="button"
+                                variant="icon"
                                 onClick={() => router.back()}
-                                className="button-icon"
                                 aria-label="Go back"
                             >
                                 <ChevronLeft size={20} />
-                            </button>
+                            </Button>
 
                             <div className="flex justify-center">
                                 <Logo isLight />
@@ -70,31 +71,23 @@ export function Header() {
                   sm:gap-4
                 "
                             >
-                                <button
+                                <Button
                                     type="button"
+                                    variant="link"
                                     onClick={handleLogin}
-                                    className="
-                    button-base
-                    button-link
-                    type-button
-                  "
                                 >
                                     Login
-                                </button>
+                                </Button>
 
-                                <button
+                                <Button
                                     type="button"
+                                    variant="cta"
                                     onClick={() =>
                                         setIsSignupOpen(true)
                                     }
-                                    className="
-                    button-base
-                    button-cta
-                    type-cta-button
-                  "
                                 >
                                     Sign up
-                                </button>
+                                </Button>
                             </nav>
                         </>
                     )}
