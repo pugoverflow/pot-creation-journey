@@ -1,19 +1,12 @@
 import { Mail, QrCode } from "lucide-react";
-import type { ComponentType } from "react";
 
 import {
-  FacebookIcon,
-  InstagramIcon,
-  type SocialIconProps,
-  WhatsAppIcon,
-  XIcon,
+    FacebookIcon,
+    InstagramIcon,
+    WhatsAppIcon,
+    XIcon,
 } from "@/components/icons/social-icons";
-
-type Social = {
-  id: string;
-  label: string;
-  icon: ComponentType<SocialIconProps>;
-};
+import type { Social } from "@/types/socials";
 
 export const socials: Social[] = [
   {

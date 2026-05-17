@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Mail } from "lucide-react";
 
 import { AssetIcon } from "@/components/icons/asset-icon";
-import { countries } from "@/lib/countries";
 import { assets } from "@/lib/assets";
+import { countries } from "@/lib/countries";
+import type { CountryCode } from "@/types/country";
 import { Button } from "@/components/ui/button/button";
 import { Dialog } from "@/components/ui/dialog/dialog";
 import { Select } from "@/components/ui/select/select";
@@ -27,7 +28,7 @@ export function SignupModal({
   open,
   onClose,
 }: SignupModalProps) {
-  const [country, setCountry] = useState("gb");
+  const [country, setCountry] = useState<CountryCode>("gb");
 
   const countryOptions = countries.map((country) => ({
     value: country.id,
@@ -46,7 +47,9 @@ export function SignupModal({
           <Select
             label="Country"
             value={country}
-            onValueChange={setCountry}
+            onValueChange={(value) =>
+              setCountry(value as CountryCode)
+            }
             options={countryOptions}
           />
 

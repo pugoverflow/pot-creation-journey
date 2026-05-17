@@ -6,6 +6,12 @@ export type PotCategory =
     | "other"
     | "charity";
 
+export type CategoryOption = {
+    id: PotCategory;
+    label: string;
+    emoji: string;
+};
+
 export type Pot = {
     id: string;
     name: string;

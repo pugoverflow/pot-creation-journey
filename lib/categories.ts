@@ -1,10 +1,6 @@
-import type { PotCategory } from "@/types/pot";
+import type { CategoryOption } from "@/types/pot";
 
-export const categories: {
-    id: PotCategory;
-    label: string;
-    emoji: string;
-}[] = [
+export const categories: CategoryOption[] = [
         {
             id: "travel",
             label: "To travel somewhere cool",
