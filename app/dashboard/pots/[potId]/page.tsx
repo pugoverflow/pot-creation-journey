@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  Ellipsis,
+  MoveDownRight,
+  MoveUpRight,
+  Palette,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
@@ -12,8 +18,11 @@ import type { Pot } from "@/types/pot";
 export default function PotPreviewPage() {
   const params = useParams<{ potId: string }>();
 
-  const [pot, setPot] = useState<Pot | null>(null);
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [pot, setPot] =
+    useState<Pot | null>(null);
+
+  const [isSignupOpen, setIsSignupOpen] =
+    useState(false);
 
   useEffect(() => {
     setPot(getPotById(params.potId));
@@ -23,7 +32,9 @@ export default function PotPreviewPage() {
     setIsSignupOpen(true);
   }
 
-  const amount = Number(pot?.amount ?? 0);
+  const amount = Number(
+    pot?.amount ?? 0
+  );
 
   return (
     <main className="flex w-full flex-col">
@@ -31,9 +42,30 @@ export default function PotPreviewPage() {
         aria-labelledby="pot-preview-heading"
         className="w-full bg-[var(--color-blue-23)]"
       >
-        <div className="mx-auto flex min-h-[268px] w-full max-w-[1440px] flex-col items-center justify-center gap-4 px-5 py-14 text-center md:px-10 xl:px-[120px]">
-          <h1 id="pot-preview-heading" className="type-pot-name">
-            {pot?.name ?? "Pot not found"}
+        <div
+          className="
+            mx-auto
+            flex
+            min-h-[268px]
+            w-full
+            max-w-[1440px]
+            flex-col
+            items-center
+            justify-center
+            gap-4
+            px-5
+            py-14
+            text-center
+            md:px-10
+            xl:px-[120px]
+          "
+        >
+          <h1
+            id="pot-preview-heading"
+            className="type-pot-name"
+          >
+            {pot?.name ??
+              "Pot not found"}
           </h1>
 
           <p className="type-pot-amount">
@@ -42,62 +74,138 @@ export default function PotPreviewPage() {
         </div>
       </section>
 
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-5 py-8 md:px-10 xl:px-[120px]">
+      <div
+        className="
+          mx-auto
+          flex
+          w-full
+          max-w-[1440px]
+          flex-col
+          gap-6
+          px-5
+          py-8
+          md:px-10
+          xl:px-[120px]
+        "
+      >
         <section
           aria-label="Pot actions"
-          className="flex flex-wrap gap-3"
+          className="
+            mx-auto
+            flex
+            w-fit
+            flex-wrap
+            justify-center
+            gap-4
+            rounded-[10px]
+            border
+            border-[var(--color-grey-94)]
+            bg-white
+            p-4
+            shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A]
+          "
         >
           <Button
             type="button"
-            variant="cta"
-            onClick={handleProtectedAction}
+            onClick={
+              handleProtectedAction
+            }
           >
-            Collect money
+            <MoveDownRight size={18} />
+
+            <span>
+              Collect money
+            </span>
           </Button>
 
           <Button
             type="button"
-            variant="link"
-            onClick={handleProtectedAction}
+            onClick={
+              handleProtectedAction
+            }
           >
-            Send money
+            <MoveUpRight size={18} />
+
+            <span>
+              Send money
+            </span>
           </Button>
 
           <Button
             type="button"
-            variant="link"
-            onClick={handleProtectedAction}
+            onClick={
+              handleProtectedAction
+            }
           >
-            Customise pot
+            <Palette size={18} />
+
+            <span>
+              Customise pot
+            </span>
           </Button>
 
           <Button
             type="button"
-            variant="link"
-            onClick={handleProtectedAction}
+            variant="primaryIcon"
+            onClick={
+              handleProtectedAction
+            }
+            aria-label="Open menu"
           >
-            Menu
+            <Ellipsis size={18} />
           </Button>
         </section>
 
         <section
           aria-labelledby="invite-heading"
-          className="flex flex-col gap-4"
+          className="
+            flex
+            flex-col
+            gap-4
+          "
         >
-          <h2 id="invite-heading" className="type-h5">
+          <h2
+            id="invite-heading"
+            className="type-h5"
+          >
             Invite people to pay
           </h2>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div
+            className="
+              grid
+              grid-cols-2
+              gap-3
+              sm:grid-cols-3
+            "
+          >
             {socials.map((social) => (
               <button
                 key={social.id}
                 type="button"
-                onClick={handleProtectedAction}
-                className="flex flex-col items-center justify-center gap-2 rounded-[12px] border border-[var(--color-grey-94)] bg-white p-4"
+                onClick={
+                  handleProtectedAction
+                }
+                className="
+                  flex
+                  flex-col
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-[12px]
+                  border
+                  border-[var(--color-grey-94)]
+                  bg-white
+                  p-4
+                "
               >
-                <span className="type-emoji">{social.icon}</span>
-                <span className="type-body-small">{social.label}</span>
+                <span className="type-emoji">
+                  {social.icon}
+                </span>
+
+                <span className="type-body-small">
+                  {social.label}
+                </span>
               </button>
             ))}
           </div>
@@ -106,7 +214,9 @@ export default function PotPreviewPage() {
 
       <SignupModal
         open={isSignupOpen}
-        onClose={() => setIsSignupOpen(false)}
+        onClose={() =>
+          setIsSignupOpen(false)
+        }
       />
     </main>
   );
