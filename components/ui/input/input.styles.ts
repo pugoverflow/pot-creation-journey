@@ -12,7 +12,7 @@ export const inputWrapperStyles = cva([
   "py-3",
   "transition-all",
   "focus-within:border-[var(--color-yellow-50)]",
-  "focus-within:shadow-[0px_0px_0px_3px_#FFDE0066]",
+  "focus-within:shadow-focus",
 ]);
 
 export const inputStyles = cva([

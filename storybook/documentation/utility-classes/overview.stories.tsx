@@ -18,7 +18,12 @@ function UtilityClassesDocumentation() {
         <li>
           <strong>Layout → Reference</strong> —{" "}
           <code className="type-body-small">page-container</code>,{" "}
-          <code className="type-body-small">shadow-elevated</code>
+          <code className="type-body-small">shadow-elevated</code>,{" "}
+          <code className="type-body-small">shadow-card</code>,{" "}
+          <code className="type-body-small">shadow-focus</code>,{" "}
+          <code className="type-body-small">surface-card</code>,{" "}
+          <code className="type-body-small">surface-panel</code>,{" "}
+          <code className="type-body-small">stack</code>
         </li>
       </ul>
     </article>

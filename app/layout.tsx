@@ -32,7 +32,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white">
+      <body className="min-h-full">
         <Header />
 
         {children}

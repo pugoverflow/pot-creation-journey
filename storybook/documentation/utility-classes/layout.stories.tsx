@@ -40,13 +40,13 @@ const samples: LayoutSample[] = [
     render: () => (
       <div className="flex flex-wrap items-start justify-center gap-8 bg-[var(--color-grey-98)] p-8">
         <div className="flex w-[200px] flex-col items-center gap-2">
-          <div className="h-[120px] w-full rounded-[20px] border border-[var(--color-grey-94)] bg-white" />
+          <div className="h-[120px] w-full surface-card" />
           <span className="type-body-small text-[var(--color-azure-65)]">
             No shadow
           </span>
         </div>
         <div className="flex w-[200px] flex-col items-center gap-2">
-          <div className="shadow-elevated h-[120px] w-full rounded-[20px] border border-[var(--color-grey-94)] bg-white" />
+          <div className="shadow-elevated h-[120px] w-full surface-card" />
           <span className="type-body-small text-[var(--color-azure-65)]">
             <code className="font-semibold text-[var(--color-blue-20)]">
               .shadow-elevated

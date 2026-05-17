@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { assets } from "@/lib/assets";
+
 const LOGO_WIDTH = 241;
 const LOGO_HEIGHT = 50;
 
@@ -20,8 +22,8 @@ export function Logo({
         <Image
             src={
                 isLight
-                    ? "/full-logo-light.svg"
-                    : "/full-logo-no-strap.svg"
+                    ? assets.logos.light
+                    : assets.logos.default
             }
             alt="Collctiv"
             width={width}

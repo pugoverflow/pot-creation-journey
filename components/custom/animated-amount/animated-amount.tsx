@@ -10,6 +10,9 @@ type AnimatedAmountProps = {
   className?: string;
 };
 
+const amountDisplayStyles =
+  "inline-flex items-baseline tabular-nums";
+
 const ROLL_CYCLES = 2;
 const DIGIT_STAGGER = 0.07;
 const ROLL_DURATION = 1.05;
@@ -137,8 +140,8 @@ export function AnimatedAmount({
     <motion.p
       className={
         className
-          ? `${className} inline-flex items-baseline tabular-nums`
-          : "inline-flex items-baseline tabular-nums"
+          ? `${className} ${amountDisplayStyles}`
+          : amountDisplayStyles
       }
       aria-label={label}
       initial={{ opacity: 0 }}

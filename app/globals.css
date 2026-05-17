@@ -25,7 +25,9 @@
   --color-grey-95-40: #e9e8fc66;
   --color-grey-95-selected: #fffbe6;
   --color-grey-98: #f9fafb;
+  --color-cyan-37: #0d9baf;
   --color-orange-48: #f5b400;
+  --color-rose-52: #f2167d;
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
 
@@ -109,6 +111,39 @@
     @apply shadow-[0px_4px_24px_0px_#1E1B4B0F];
   }
 
+  .shadow-card {
+    @apply shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A];
+  }
+
+  .shadow-focus {
+    @apply shadow-[0px_0px_0px_3px_#FFDE0066];
+  }
+
+  .surface-card {
+    @apply rounded-[20px] border border-[var(--color-grey-94)] bg-white;
+  }
+
+  .surface-panel {
+    @apply rounded-[10px] border border-[var(--color-grey-94)] bg-white;
+  }
+
+  .surface-field {
+    @apply rounded-[10px] border border-[var(--color-grey-91)] bg-white;
+  }
+
+  .stack {
+    @apply flex flex-col;
+  }
+
+  .asset-icon-mask {
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+
   .type-h1 {
     color: var(--color-blue-20);
     font-family: var(--font-1);
@@ -152,6 +187,15 @@
     font-weight: var(--font-weight-semi-bold);
     letter-spacing: 0;
     line-height: var(--text-button-line-height);
+  }
+
+  .type-button-on-color {
+    font-family: var(--font-2);
+    font-size: var(--text-button-size);
+    font-weight: var(--font-weight-semi-bold);
+    letter-spacing: 0;
+    line-height: var(--text-button-line-height);
+    color: var(--color-white);
   }
 
   .type-cta-button {

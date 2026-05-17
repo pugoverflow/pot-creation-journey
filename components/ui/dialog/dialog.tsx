@@ -4,6 +4,7 @@ import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { X } from "lucide-react";
 import { motion } from "motion/react";
 
+import { Button } from "@/components/ui/button/button";
 import {
     asMotionDivProps,
     isDialogVisible,
@@ -77,12 +78,16 @@ export function Dialog({
                     )}
                 >
                     <BaseDialog.Close
-                        type="button"
-                        aria-label="Close dialog"
-                        className="flex self-end h-8 w-8 items-center justify-center rounded-[8px] text-[var(--color-grey-46)] transition-colors hover:bg-[var(--color-grey-94)]"
-                    >
-                        <X size={18} />
-                    </BaseDialog.Close>
+                        render={(props) => (
+                            <Button
+                                {...props}
+                                variant="close"
+                                aria-label="Close dialog"
+                            >
+                                <X size={18} />
+                            </Button>
+                        )}
+                    />
 
 
                     <div className="flex flex-col gap-2">

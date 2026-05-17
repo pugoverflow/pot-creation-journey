@@ -29,7 +29,7 @@ export const toggleGroupItemStyles = cva(
         true: [
           "border-[var(--color-yellow-50)]",
           "bg-[var(--color-grey-95-selected)]",
-          "shadow-[0px_0px_0px_3px_#FFDE0066]",
+          "shadow-focus",
         ],
         false: [
           "border-[var(--color-grey-98)]",

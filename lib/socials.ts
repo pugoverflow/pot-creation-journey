@@ -1,47 +1,49 @@
-import type { LucideIcon } from "lucide-react";
+import { Mail, QrCode } from "lucide-react";
+import type { ComponentType } from "react";
 
 import {
-
-    Mail,
-    MessageCircle,
-    QrCode,
-} from "lucide-react";
+  FacebookIcon,
+  InstagramIcon,
+  type SocialIconProps,
+  WhatsAppIcon,
+  XIcon,
+} from "@/components/icons/social-icons";
 
 type Social = {
-    id: string;
-    label: string;
-    icon: LucideIcon;
+  id: string;
+  label: string;
+  icon: ComponentType<SocialIconProps>;
 };
 
 export const socials: Social[] = [
-    {
-        id: "email",
-        label: "Email",
-        icon: Mail,
-    },
-    {
-        id: "qr-code",
-        label: "QR code",
-        icon: QrCode,
-    },
-    {
-        id: "whatsapp",
-        label: "WhatsApp",
-        icon: MessageCircle,
-    },
-    {
-        id: "facebook",
-        label: "Facebook",
-        icon: MessageCircle,
-    },
-    {
-        id: "instagram",
-        label: "Instagram",
-        icon: MessageCircle,
-    },
-    {
-        id: "x",
-        label: "X",
-        icon: MessageCircle,
-    },
+  {
+    id: "email",
+    label: "Email",
+    icon: Mail,
+  },
+  {
+    id: "qr-code",
+    label: "QR code",
+    icon: QrCode,
+  },
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    icon: WhatsAppIcon,
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    icon: FacebookIcon,
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    icon: InstagramIcon,
+  },
+  {
+    id: "x",
+    label: "X",
+    icon: XIcon,
+  },
 ];

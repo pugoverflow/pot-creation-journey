@@ -2,14 +2,12 @@ import { cva } from "class-variance-authority";
 
 export const signupModalContentStyles = cva([
   "mt-4",
-  "flex",
-  "flex-col",
+  "stack",
   "gap-4",
 ]);
 
 export const signupModalButtonsStyles = cva([
-  "flex",
-  "flex-col",
+  "stack",
   "gap-3",
 ]);
 

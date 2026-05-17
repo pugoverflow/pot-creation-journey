@@ -22,14 +22,17 @@ const potActions = [
   {
     label: "Collect money",
     icon: MoveDownRight,
+    variant: "primary" as const,
   },
   {
     label: "Send money",
     icon: MoveUpRight,
+    variant: "secondary" as const,
   },
   {
     label: "Customise pot",
     icon: Palette,
+    variant: "tertiary" as const,
   },
 ];
 
@@ -107,7 +110,7 @@ export default function PotPreviewPage() {
           <motion.section
             aria-label="Pot actions"
             {...stepEnter}
-            className="mx-auto flex w-fit flex-wrap justify-center gap-4 rounded-[10px] border border-[var(--color-grey-94)] bg-white p-4 shadow-[0px_2px_4px_-2px_#0000001A,0px_4px_6px_-1px_#0000001A]"
+            className="surface-panel shadow-card mx-auto flex w-fit flex-wrap justify-center gap-4 p-4"
           >
             {potActions.map((action) => {
               const Icon =
@@ -117,6 +120,7 @@ export default function PotPreviewPage() {
                 <Button
                   key={action.label}
                   type="button"
+                  variant={action.variant}
                   onClick={
                     handleProtectedAction
                   }
@@ -132,7 +136,7 @@ export default function PotPreviewPage() {
 
             <Button
               type="button"
-              variant="primaryIcon"
+              variant="tertiaryIcon"
               onClick={
                 handleProtectedAction
               }
@@ -160,20 +164,20 @@ export default function PotPreviewPage() {
                   social.icon;
 
                 return (
-                  <button
+                  <Button
                     key={social.id}
                     type="button"
+                    variant="social"
                     onClick={
                       handleProtectedAction
                     }
-                    className="flex flex-col items-center gap-2 rounded-[12px] border border-[var(--color-grey-94)] bg-white p-4"
                   >
                     <Icon size={20} />
 
                     <span className="type-body-small">
                       {social.label}
                     </span>
-                  </button>
+                  </Button>
                 );
               })}
             </div>

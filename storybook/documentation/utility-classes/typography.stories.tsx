@@ -66,7 +66,7 @@ const sections: TypographySection[] = [
       {
         className: "type-button",
         description: "Default button label.",
-        usage: "Button — `link` and `primary` variants.",
+        usage: "Button — `link`, `tertiary`, `primary`, and `secondary` variants.",
         sample: "Continue",
       },
       {

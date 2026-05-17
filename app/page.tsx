@@ -90,7 +90,7 @@ export default function HomePage() {
         aria-labelledby="create-pot-heading"
         className="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
-        <div className="shadow-elevated flex flex-col gap-[14px] rounded-[20px] border border-[var(--color-grey-94)] bg-white p-6">
+        <div className="surface-card shadow-elevated flex flex-col gap-[14px] p-6">
           <h2
             id="create-pot-heading"
             className="sr-only"
