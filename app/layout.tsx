@@ -35,9 +35,7 @@ export default function RootLayout({
       <body className="min-h-full bg-white">
         <Header />
 
-        <div className="mx-auto w-full max-w-[1440px] px-5 pt-[31px] pb-14 md:px-10 xl:px-[120px]">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

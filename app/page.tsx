@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { PencilLine } from "lucide-react";
+import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button/button";
 import { Input } from "@/components/ui/input/input";
@@ -28,6 +28,16 @@ export default function HomePage() {
     selectedCategory !== null &&
     trimmedPotName.length > 0;
 
+  const categoryOptions = useMemo(
+    () =>
+      categories.map((category) => ({
+        id: category.id,
+        label: category.label,
+        icon: category.emoji,
+      })),
+    []
+  );
+
   function handleCreatePot() {
     if (
       !selectedCategory ||
@@ -44,6 +54,7 @@ export default function HomePage() {
 
       name: trimmedPotName,
       category: selectedCategory,
+      amount: 0,
     };
 
     savePot(pot);
@@ -54,7 +65,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-[1200px] flex-col gap-6">
+    <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-5 pb-14 pt-[31px] md:px-10 xl:px-[120px]">
       <section
         aria-labelledby="hero-heading"
         className="flex w-full flex-col gap-3 text-center"
@@ -114,13 +125,7 @@ export default function HomePage() {
                   value as PotCategory
                 )
               }
-              options={categories.map(
-                (category) => ({
-                  id: category.id,
-                  label: category.label,
-                  icon: category.emoji,
-                })
-              )}
+              options={categoryOptions}
             />
 
             <h5 className="type-h5">
@@ -157,14 +162,14 @@ export default function HomePage() {
 
             <div
               className="
-    flex
-    flex-col
-    items-center
-    justify-center
-    gap-2
-    text-center
-    sm:flex-row
-  "
+                flex
+                flex-col
+                items-center
+                justify-center
+                gap-2
+                text-center
+                sm:flex-row
+              "
             >
               <p className="type-rating">
                 ★★★★★

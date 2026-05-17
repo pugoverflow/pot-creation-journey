@@ -80,11 +80,22 @@
   --text-emoji-line-height: 18px;
   --text-emoji-size: 18px;
 
-  --text-pot-value-large-line-height: 80px;
-  --text-pot-value-large-size: 77.5px;
+  --text-pot-name-line-height: 60px;
+  --text-pot-name-size: 57.9px;
 
-  --text-pot-value-line-height: 60px;
-  --text-pot-value-size: 57.9px;
+  --text-pot-amount-large-line-height: 80px;
+  --text-pot-amount-large-size: 77.5px;
+
+  --text-pot-amount-line-height: 60px;
+  --text-pot-amount-size: 57.9px;
+
+  /* Ratings typography */
+  --text-rating-letter-spacing: 2px;
+  --text-rating-line-height: 24px;
+  --text-rating-size: 16px;
+
+  --text-review-line-height: 24px;
+  --text-review-size: 14px;
 
   /* Dialog typography */
   --text-dialog-title-letter-spacing: -0.2px;
@@ -252,22 +263,22 @@
     line-height: var(--text-emoji-line-height);
   }
 
-  .type-pot-value {
-    color: var(--color-blue-20);
+  .type-pot-name {
+    color: var(--color-white);
     font-family: var(--font-1);
-    font-size: var(--text-pot-value-size);
+    font-size: var(--text-pot-name-size);
     font-weight: var(--font-weight-medium);
     letter-spacing: 0;
-    line-height: var(--text-pot-value-line-height);
+    line-height: var(--text-pot-name-line-height);
   }
 
-  .type-pot-value-large {
-    color: var(--color-blue-20);
+  .type-pot-amount {
+    color: var(--color-white);
     font-family: var(--font-1);
-    font-size: var(--text-pot-value-large-size);
+    font-size: var(--text-pot-amount-large-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: 0;
-    line-height: var(--text-pot-value-large-line-height);
+    line-height: var(--text-pot-amount-large-line-height);
   }
 
   /* Ratings */
