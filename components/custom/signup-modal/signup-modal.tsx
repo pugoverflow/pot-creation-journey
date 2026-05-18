@@ -17,10 +17,7 @@ type SignupModalProps = {
   onClose: () => void;
 };
 
-export function SignupModal({
-  open,
-  onClose,
-}: SignupModalProps) {
+export function SignupModal({ open, onClose }: SignupModalProps) {
   const [country, setCountry] = useState<CountryCode>("gb");
 
   const countryOptions = countries.map((country) => ({
@@ -36,39 +33,24 @@ export function SignupModal({
       description="You can either use your Apple account or your email address."
     >
       <div className="mt-4 stack gap-4">
-        <div className="stack gap-3">
-          <Select
-            label="Country"
-            value={country}
-            onValueChange={(value) =>
-              setCountry(value as CountryCode)
-            }
-            options={countryOptions}
-          />
+        <Select
+          label="Country"
+          value={country}
+          onValueChange={(value) => setCountry(value as CountryCode)}
+          options={countryOptions}
+        />
 
-          <Separator />
+        <Separator />
 
-          <Button
-            type="button"
-            className="w-full"
-            disabled
-          >
-            <AssetIcon
-              src={assets.thirdParty.apple}
-              size={20}
-            />
-            Sign up with Apple
-          </Button>
+        <Button type="button" className="w-full" disabled>
+          <AssetIcon src={assets.thirdParty.apple} size={20} />
+          Sign up with Apple
+        </Button>
 
-          <Button
-            type="button"
-            className="w-full"
-            disabled
-          >
-            <Mail size={20} aria-hidden="true" />
-            Sign up with email
-          </Button>
-        </div>
+        <Button type="button" className="w-full" disabled>
+          <Mail size={20} aria-hidden="true" />
+          Sign up with email
+        </Button>
 
         <p className="type-dialog-legal">
           By signing up, you agree to our{" "}

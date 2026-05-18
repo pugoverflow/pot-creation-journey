@@ -10,6 +10,7 @@ A responsive Next.js app: marketing homepage → multi-step pot creation → das
 - Accessible UI (Base UI + Tailwind)
 - Storybook for component docs
 - Vitest + Testing Library component tests (header, logo)
+- Pre-commit formatting and lint fixes via Husky + lint-staged
 
 ## Tech Stack
 
@@ -21,31 +22,33 @@ A responsive Next.js app: marketing homepage → multi-step pot creation → das
 
 **Testing:** [Vitest](https://vitest.dev/), [Vite](https://vite.dev/), [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react), [jsdom](https://github.com/jsdom/jsdom), [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) ([React](https://www.npmjs.com/package/@testing-library/react), [jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom))
 
-**Linting:** [ESLint](https://eslint.org/), [eslint-config-next](https://nextjs.org/docs/app/api-reference/config/eslint) (Core Web Vitals + TypeScript)
+**Linting & formatting:** [ESLint](https://eslint.org/), [eslint-config-next](https://nextjs.org/docs/app/api-reference/config/eslint) (Core Web Vitals + TypeScript), [Prettier](https://prettier.io/), [Husky](https://typicode.github.io/husky/) + [lint-staged](https://github.com/lint-staged/lint-staged) (pre-commit)
 
 ## Getting Started
 
 ```bash
-npm install
+npm install   # also runs `prepare` → sets up Husky git hooks
 npm run dev
 ```
 
-Start at [http://localhost:3000](http://localhost:3000) and complete the pot creation flow—on submit you are redirected to `/dashboard/pots/{id}`. The preview only works for pots already saved in `localStorage` in that browser; visiting a dashboard URL directly (or after clearing storage) will not load a pot.
+Start at [http://localhost:3000](http://localhost:3000) and complete the pot creation flow—on submit you are redirected to `/dashboard/pots/{id}`. The preview only works for pots already saved in `localStorage` in that browser. A dashboard URL for a missing or unknown `potId` (or after clearing storage) triggers `notFound()` and the generic 404 page (`app/not-found.tsx`).
 
 ## Scripts
 
 All `npm run` commands defined in `package.json`:
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the Next.js dev server ([http://localhost:3000](http://localhost:3000)) |
-| `npm run build` | Create an optimized production build |
-| `npm run start` | Serve the production build (run after `build`) |
-| `npm run storybook` | Start Storybook ([http://localhost:6006](http://localhost:6006)) |
-| `npm run lint` | Run ESLint |
-| `npm run test` | Run Vitest in watch mode |
-| `npm run test:run` | Run Vitest once (CI) |
-| `npm run check` | Run lint, tests, and build |
+| Command                | Description                                                                   |
+| ---------------------- | ----------------------------------------------------------------------------- |
+| `npm run dev`          | Start the Next.js dev server ([http://localhost:3000](http://localhost:3000)) |
+| `npm run build`        | Create an optimized production build                                          |
+| `npm run start`        | Serve the production build (run after `build`)                                |
+| `npm run storybook`    | Start Storybook ([http://localhost:6006](http://localhost:6006))              |
+| `npm run lint`         | Run ESLint                                                                    |
+| `npm run format`       | Format the repo with Prettier                                                 |
+| `npm run format:check` | Check formatting without writing files                                        |
+| `npm run test`         | Run Vitest in watch mode                                                      |
+| `npm run test:run`     | Run Vitest once (CI)                                                          |
+| `npm run check`        | Run lint, tests, and build                                                    |
 
 ## Architecture
 
@@ -66,11 +69,11 @@ Pots are stored in `localStorage` keyed by `potId` so the dashboard route loads 
 
 - **Token-based utility classes** — Reusable classes on primitive colour tokens kept styling fast and consistent during the challenge. In a larger product, these would likely become semantic design tokens plus dedicated typography and spacing components.
 
-- **Journey before polish** — The full create → preview path was prioritised early so functionality and information architecture were proven before investing in animation and visual refinement under time pressure.
+- **No TDD, thin test coverage** — Tests were added after the core journey worked, not test-first. Coverage is limited to two component test files (header, logo): render, props, and interaction assertions—not test-first or full-journey coverage. Pot creation, `localStorage`, dashboard routing, and 404 handling were checked manually.
 
 ## Approach
 
-- **Content-led development** — The multi-step flow and routing logic were implemented first with minimal styling, so the core journey worked end-to-end before polish. That reduced the risk of over-investing in UI before the architecture was sound.
+- **Content-led development, journey before polish** — The multi-step flow and routing logic were implemented first with minimal styling so the create → preview path worked end-to-end before animation and visual refinement. That proved functionality and information architecture under time pressure and reduced the risk of over-investing in UI before the architecture was sound.
 
 - **Semantic HTML, then components** — Screens started as semantic markup aligned to the design. As patterns repeated, shared pieces moved into `components/ui` (primitives + CVA variants) and `components/custom` (app-specific), with Base UI replacing ad-hoc interactive markup where it helped.
 
@@ -78,31 +81,17 @@ Pots are stored in `localStorage` keyed by `potId` so the dashboard route loads 
 
 ## Quality checks
 
-Run lint, tests, and a production build in one step with `npm run check` (see [Scripts](#scripts)).
+On each commit, Husky runs lint-staged on staged files (Prettier + ESLint `--fix` — see [Code quality](#code-quality)). For a full pass before pushing, run `npm run check` (lint, tests, and production build). Commands are listed in [Scripts](#scripts).
 
-## Linting
+## Code quality
 
-[ESLint](https://eslint.org/) runs via `eslint.config.mjs`, extending Next.js [Core Web Vitals](https://nextjs.org/docs/app/api-reference/config/eslint#core-web-vitals) and [TypeScript](https://nextjs.org/docs/app/api-reference/config/eslint#typescript) presets. Build output (`.next`, `out`, `build`) and `next-env.d.ts` are ignored.
-
-| Package | Role |
-| --- | --- |
-| `eslint` | Linter |
-| `eslint-config-next` | Next.js recommended rules (React, hooks, a11y, TypeScript) |
-
-Run with `npm run lint` (see [Scripts](#scripts)).
+- **ESLint** — `eslint.config.mjs` with Next.js Core Web Vitals + TypeScript presets; build output and `next-env.d.ts` ignored. Manual run: `npm run lint`.
+- **Prettier** — `.prettierrc.json` (2-space indent, semicolons, double quotes); `.prettierignore` skips build artifacts and the lockfile. `npm run format` / `npm run format:check`.
+- **Pre-commit** — `npm install` runs `prepare` → Husky (`.husky/pre-commit`) → lint-staged on staged paths: JS/TS/MJS get Prettier then ESLint `--fix`; CSS/JSON/MD get Prettier only. Config in `package.json` under `lint-staged`.
 
 ## Testing
 
-Component tests live next to source (`**/*.{test,spec}.{ts,tsx}`), run in [jsdom](https://github.com/jsdom/jsdom) via [Vitest](https://vitest.dev/). [Vite](https://vite.dev/) and [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) power the test runner; [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) and [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) provide queries and DOM matchers. Global setup (`vitest.setup.ts`) registers jest-dom, cleans up after each test, and mocks `next/image`.
-
-| Package | Role |
-| --- | --- |
-| `vitest` | Test runner and assertions |
-| `vite` | Bundler used by Vitest |
-| `@vitejs/plugin-react` | React/JSX support in tests |
-| `jsdom` | Browser-like DOM environment |
-| `@testing-library/react` | Render components and query the DOM |
-| `@testing-library/jest-dom` | Extra matchers (e.g. `toBeVisible`) |
+Component tests live next to source as `**/*.test.tsx` files (currently `header.test.tsx`, `logo.test.tsx` — thin coverage by design, see [Trade-offs](#trade-offs)). They run in [jsdom](https://github.com/jsdom/jsdom) via [Vitest](https://vitest.dev/); [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) queries the DOM and asserts render output, props, and clicks (e.g. header modals and `router.back`). Global setup (`vitest.setup.ts`) registers jest-dom, cleans up after each test, and mocks `next/image` and `next/navigation` where needed.
 
 Run with `npm run test` (watch) or `npm run test:run` (single run) — see [Scripts](#scripts).
 
@@ -110,10 +99,10 @@ Run with `npm run test` (watch) or `npm run test:run` (single run) — see [Scri
 
 Personal stretch goal—documents UI primitives and custom components in isolation from the app flow. Stories live under `components/**/*.stories.{ts,tsx}` and `storybook/documentation/` (see `.storybook/main.ts`). The [Next.js + Vite](https://storybook.js.org/docs/get-started/frameworks/nextjs-vite) framework serves static assets from `public/`.
 
-| Package | Role |
-| --- | --- |
-| `storybook` | Storybook CLI and UI |
+| Package                  | Role                       |
+| ------------------------ | -------------------------- |
+| `storybook`              | Storybook CLI and UI       |
 | `@storybook/nextjs-vite` | Next.js + Vite integration |
-| `@storybook/addon-docs` | Autodocs and MDX |
+| `@storybook/addon-docs`  | Autodocs and MDX           |
 
 Run with `npm run storybook` (see [Scripts](#scripts)).

@@ -16,18 +16,15 @@ import type { PotCategory } from "@/types/pot";
 export default function HomePage() {
   const router = useRouter();
 
-  const [selectedCategory, setSelectedCategory] =
-    useState<PotCategory | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<PotCategory | null>(
+    null,
+  );
 
-  const [potName, setPotName] =
-    useState("");
+  const [potName, setPotName] = useState("");
 
-  const trimmedPotName =
-    potName.trim();
+  const trimmedPotName = potName.trim();
 
-  const isFormValid =
-    selectedCategory !== null &&
-    trimmedPotName.length > 0;
+  const isFormValid = selectedCategory !== null && trimmedPotName.length > 0;
 
   const categoryOptions = useMemo(
     () =>
@@ -36,22 +33,16 @@ export default function HomePage() {
         label: category.label,
         icon: category.emoji,
       })),
-    []
+    [],
   );
 
   function handleCreatePot() {
-    if (
-      !selectedCategory ||
-      !trimmedPotName
-    ) {
+    if (!selectedCategory || !trimmedPotName) {
       return;
     }
 
     const pot = {
-      id: crypto
-        .randomUUID()
-        .replaceAll("-", "")
-        .slice(0, 22),
+      id: crypto.randomUUID().replaceAll("-", "").slice(0, 22),
 
       name: trimmedPotName,
       category: selectedCategory,
@@ -60,30 +51,22 @@ export default function HomePage() {
 
     savePot(pot);
 
-    router.push(
-      `/dashboard/pots/${pot.id}`
-    );
+    router.push(`/dashboard/pots/${pot.id}`);
   }
 
   return (
-    <main className="page-container flex flex-col gap-6 pb-14 pt-[31px]">
+    <main className="page-container stack gap-6 pb-14 pt-[31px]">
       <section
         aria-labelledby="hero-heading"
-        className="flex flex-col gap-3 text-center"
+        className="stack gap-3 text-center"
       >
-        <h1
-          id="hero-heading"
-          className="type-homepage-title"
-        >
-          Collect money without sharing
-          bank details.
+        <h1 id="hero-heading" className="type-homepage-title">
+          Collect money without sharing bank details.
         </h1>
 
         <p className="type-body-large">
-          Organise the things you love
-          with the people you love -
-          without getting stuck with the
-          bill.
+          Organise the things you love with the people you love - without
+          getting stuck with the bill.
         </p>
       </section>
 
@@ -91,51 +74,31 @@ export default function HomePage() {
         aria-labelledby="create-pot-heading"
         className="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
-        <div className="surface-card shadow-elevated flex flex-col gap-[14px] p-6">
-          <h2
-            id="create-pot-heading"
-            className="sr-only"
-          >
+        <div className="surface-card shadow-elevated stack gap-3.5 p-6">
+          <h2 id="create-pot-heading" className="sr-only">
             Create a pot
           </h2>
 
-          <h5 className="type-labels">
-            What are you collecting
-            for?
-          </h5>
+          <h5 className="type-labels">What are you collecting for?</h5>
 
           <ToggleGroup
             ariaLabel="Select a pot category"
             value={selectedCategory}
-            onValueChange={(value) =>
-              setSelectedCategory(
-                value as PotCategory
-              )
-            }
+            onValueChange={(value) => setSelectedCategory(value as PotCategory)}
             options={categoryOptions}
           />
 
-          <h5 className="type-labels">
-            What should we call the
-            pot?
-          </h5>
+          <h5 className="type-labels">What should we call the pot?</h5>
 
           <Input
             type="text"
             value={potName}
             onChange={(event) => {
-              setPotName(
-                event.target.value.slice(
-                  0,
-                  40
-                )
-              );
+              setPotName(event.target.value.slice(0, 40));
             }}
             maxLength={40}
             placeholder="Enter a name for this pot"
-            icon={
-              <PencilLine size={18} />
-            }
+            icon={<PencilLine size={18} />}
           />
 
           <Button
@@ -147,14 +110,11 @@ export default function HomePage() {
             Create your pot
           </Button>
 
-          <div className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-center">
-            <p className="type-social-proof-stars">
-              ★★★★★
-            </p>
+          <div className="stack items-center gap-2 text-center sm:flex-row sm:justify-center">
+            <p className="type-social-proof-stars">★★★★★</p>
 
             <p className="type-social-proof-caption">
-              Trusted by 3000+ App
-              Store reviewers
+              Trusted by 3000+ App Store reviewers
             </p>
           </div>
         </div>

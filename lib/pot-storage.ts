@@ -28,7 +28,7 @@ export function usePot(potId: string): Pot | null {
   const potSnapshot = useSyncExternalStore(
     subscribePotStorage,
     () => getPotSnapshot(potId),
-    () => null
+    () => null,
   );
 
   return useMemo((): Pot | null => {

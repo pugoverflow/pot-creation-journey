@@ -1,10 +1,10 @@
 import { Mail, QrCode } from "lucide-react";
 
 import {
-    FacebookIcon,
-    InstagramIcon,
-    WhatsAppIcon,
-    XIcon,
+  FacebookIcon,
+  InstagramIcon,
+  WhatsAppIcon,
+  XIcon,
 } from "@/components/icons/social-icons";
 import type { Social } from "@/types/socials";
 

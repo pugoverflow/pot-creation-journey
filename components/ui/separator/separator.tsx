@@ -14,9 +14,7 @@ export function Separator({
       orientation={orientation}
       className={[
         "shrink-0 border-[var(--color-grey-91)]",
-        orientation === "horizontal"
-          ? "w-full border-t"
-          : "h-full border-l",
+        orientation === "horizontal" ? "w-full border-t" : "h-full border-l",
         className,
       ]
         .filter(Boolean)

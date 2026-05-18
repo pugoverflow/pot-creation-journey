@@ -4,11 +4,7 @@ export type AssetIconProps = {
   className?: string;
 };
 
-export function AssetIcon({
-  src,
-  size = 24,
-  className,
-}: AssetIconProps) {
+export function AssetIcon({ src, size = 24, className }: AssetIconProps) {
   return (
     <span
       aria-hidden

@@ -19,10 +19,9 @@ function CustomDocumentation() {
       </p>
       <p className="type-body-large">
         They compose UI primitives from{" "}
-        <code className="type-body-small">components/ui</code> with
-        app-specific layout, copy, and behaviour. See{" "}
-        <strong>UI/Documentation</strong> for how base primitives and variants
-        are styled.
+        <code className="type-body-small">components/ui</code> with app-specific
+        layout, copy, and behaviour. See <strong>UI/Documentation</strong> for
+        how base primitives and variants are styled.
       </p>
     </article>
   );

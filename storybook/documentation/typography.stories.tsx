@@ -175,8 +175,7 @@ const sections: TypographySection[] = [
         sample: "terms",
         render: () => (
           <p className="type-dialog-legal">
-            Example:{" "}
-            <span className="type-dialog-link">Privacy policy</span>
+            Example: <span className="type-dialog-link">Privacy policy</span>
           </p>
         ),
       },

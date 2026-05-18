@@ -11,14 +11,7 @@ afterEach(() => {
 });
 
 vi.mock("next/image", () => ({
-  default: ({
-    src,
-    alt,
-    width,
-    height,
-    priority,
-    ...rest
-  }: ImageProps) =>
+  default: ({ src, alt, width, height, priority, ...rest }: ImageProps) =>
     createElement("img", {
       src: typeof src === "string" ? src : undefined,
       alt,

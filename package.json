@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "check": "npm run lint && npm run test:run && npm run build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "prepare": "husky"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -33,11 +36,21 @@
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.5",
+    "prettier": "^3.8.3",
     "storybook": "^10.4.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^8.0.13",
     "vitest": "^4.1.6"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,json,md}": "prettier --write"
   }
 }

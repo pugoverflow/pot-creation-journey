@@ -1,0 +1,8 @@
+.next
+out
+build
+node_modules
+storybook-static
+package-lock.json
+next-env.d.ts
+coverage

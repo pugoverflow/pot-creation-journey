@@ -6,8 +6,8 @@ function UiDocumentation() {
       <h1 className="type-labels">UI primitives</h1>
       <p className="type-body-large">
         These components live in{" "}
-        <code className="type-body-small">components/ui</code>. They are base
-        UI built on{" "}
+        <code className="type-body-small">components/ui</code>. They are base UI
+        built on{" "}
         <a
           href="https://base-ui.com/"
           className="underline"

@@ -36,21 +36,14 @@ export function Select({
       }}
     >
       {label && (
-        <BaseSelect.Label className="type-labels">
-          {label}
-        </BaseSelect.Label>
+        <BaseSelect.Label className="type-labels">{label}</BaseSelect.Label>
       )}
 
-      <BaseSelect.Trigger className="flex h-[50px] w-full items-center justify-between surface-field px-[14px] py-3 text-left type-button-default">
-        <BaseSelect.Value>
-          {selectedLabel}
-        </BaseSelect.Value>
+      <BaseSelect.Trigger className="flex h-[50px] w-full items-center justify-between surface-field px-3.5 py-3 text-left type-button-default">
+        <BaseSelect.Value>{selectedLabel}</BaseSelect.Value>
 
         <BaseSelect.Icon>
-          <ChevronDown
-            size={16}
-            className="text-[var(--color-grey-46)]"
-          />
+          <ChevronDown size={16} className="text-[var(--color-grey-46)]" />
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
 
@@ -62,11 +55,9 @@ export function Select({
                 <BaseSelect.Item
                   key={option.value}
                   value={option.value}
-                  className="flex cursor-pointer items-center justify-between rounded-[8px] px-3 py-2 outline-none hover:bg-[var(--color-grey-98)]"
+                  className="flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 outline-none hover:bg-[var(--color-grey-98)]"
                 >
-                  <BaseSelect.ItemText>
-                    {option.label}
-                  </BaseSelect.ItemText>
+                  <BaseSelect.ItemText>{option.label}</BaseSelect.ItemText>
 
                   <BaseSelect.ItemIndicator>
                     <Check size={16} />

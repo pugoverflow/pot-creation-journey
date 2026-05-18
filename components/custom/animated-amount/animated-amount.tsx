@@ -10,8 +10,7 @@ type AnimatedAmountProps = {
   className?: string;
 };
 
-const amountDisplayStyles =
-  "inline-flex items-baseline tabular-nums";
+const amountDisplayStyles = "inline-flex items-baseline tabular-nums";
 
 const ROLL_CYCLES = 2;
 const DIGIT_STAGGER = 0.07;
@@ -21,40 +20,30 @@ function formatAmount(value: number) {
   return value.toFixed(2);
 }
 
-function subscribePrefersReducedMotion(
-  onStoreChange: () => void
-) {
-  const media = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
+function subscribePrefersReducedMotion(onStoreChange: () => void) {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   media.addEventListener("change", onStoreChange);
 
-  return () =>
-    media.removeEventListener("change", onStoreChange);
+  return () => media.removeEventListener("change", onStoreChange);
 }
 
 function getPrefersReducedMotionSnapshot() {
-  return window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 function usePrefersReducedMotion() {
   return useSyncExternalStore(
     subscribePrefersReducedMotion,
     getPrefersReducedMotionSnapshot,
-    () => false
+    () => false,
   );
 }
 
 function buildDigitStrip(targetDigit: number) {
   const finalIndex = 10 * ROLL_CYCLES + targetDigit;
 
-  return Array.from(
-    { length: finalIndex + 1 },
-    (_, index) => index % 10
-  );
+  return Array.from({ length: finalIndex + 1 }, (_, index) => index % 10);
 }
 
 type DigitRollerProps = {
@@ -63,10 +52,7 @@ type DigitRollerProps = {
 };
 
 function DigitRoller({ digit, delay }: DigitRollerProps) {
-  const strip = useMemo(
-    () => buildDigitStrip(digit),
-    [digit]
-  );
+  const strip = useMemo(() => buildDigitStrip(digit), [digit]);
 
   const finalIndex = 10 * ROLL_CYCLES + digit;
 
@@ -98,12 +84,8 @@ function DigitRoller({ digit, delay }: DigitRollerProps) {
   );
 }
 
-export function AnimatedAmount({
-  value,
-  className,
-}: AnimatedAmountProps) {
-  const prefersReducedMotion =
-    usePrefersReducedMotion();
+export function AnimatedAmount({ value, className }: AnimatedAmountProps) {
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const formatted = formatAmount(value);
   const label = `£${formatted}`;
@@ -111,18 +93,13 @@ export function AnimatedAmount({
   const { chars, digitIndexByPosition } = useMemo(() => {
     const chars = formatted.split("");
     const digitPositions = chars
-      .map((char, index) =>
-        /\d/.test(char) ? index : -1
-      )
+      .map((char, index) => (/\d/.test(char) ? index : -1))
       .filter((index) => index >= 0);
 
     const digitIndexByPosition = new Map<number, number>();
 
     digitPositions.forEach((position, order) => {
-      digitIndexByPosition.set(
-        position,
-        digitPositions.length - 1 - order
-      );
+      digitIndexByPosition.set(position, digitPositions.length - 1 - order);
     });
 
     return { chars, digitIndexByPosition };
@@ -139,9 +116,7 @@ export function AnimatedAmount({
   return (
     <motion.p
       className={
-        className
-          ? `${className} ${amountDisplayStyles}`
-          : amountDisplayStyles
+        className ? `${className} ${amountDisplayStyles}` : amountDisplayStyles
       }
       aria-label={label}
       initial={{ opacity: 0 }}
@@ -166,16 +141,10 @@ export function AnimatedAmount({
         }
 
         const digit = Number(char);
-        const delay =
-          (digitIndexByPosition.get(index) ?? 0) *
-          DIGIT_STAGGER;
+        const delay = (digitIndexByPosition.get(index) ?? 0) * DIGIT_STAGGER;
 
         return (
-          <DigitRoller
-            key={`${index}-${digit}`}
-            digit={digit}
-            delay={delay}
-          />
+          <DigitRoller key={`${index}-${digit}`} digit={digit} delay={delay} />
         );
       })}
     </motion.p>

@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Ellipsis,
-  MoveDownRight,
-  MoveUpRight,
-  Palette,
-} from "lucide-react";
+import { Ellipsis, MoveDownRight, MoveUpRight, Palette } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { notFound, useParams } from "next/navigation";
@@ -48,8 +43,7 @@ export default function PotPreviewPage() {
     }
   }, [params.potId, pot]);
 
-  const [isSignupOpen, setIsSignupOpen] =
-    useState(false);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   function handleProtectedAction() {
     setIsSignupOpen(true);
@@ -62,7 +56,7 @@ export default function PotPreviewPage() {
           aria-labelledby="pot-preview-heading"
           className="bg-[var(--color-blue-23)]"
         >
-          <div className="page-container flex min-h-[268px] flex-col items-center justify-center gap-4 py-14 text-center">
+          <div className="page-container flex min-h-[268px] stack items-center justify-center gap-4 py-14 text-center">
             <h1 id="pot-preview-heading" className="type-pot-name">
               Loading pot...
             </h1>
@@ -80,20 +74,12 @@ export default function PotPreviewPage() {
         aria-labelledby="pot-preview-heading"
         className="bg-[var(--color-blue-23)]"
       >
-        <div
-          className="page-container flex min-h-[268px] flex-col items-center justify-center gap-4 py-14 text-center"
-        >
-          <h1
-            id="pot-preview-heading"
-            className="type-pot-name"
-          >
+        <div className="page-container flex min-h-[268px] stack items-center justify-center gap-4 py-14 text-center">
+          <h1 id="pot-preview-heading" className="type-pot-name">
             {pot.name}
           </h1>
 
-          <AnimatedAmount
-            value={amount}
-            className="type-pot-amount"
-          />
+          <AnimatedAmount value={amount} className="type-pot-amount" />
         </div>
       </section>
 
@@ -112,32 +98,25 @@ export default function PotPreviewPage() {
           before:content-['']
         "
       >
-        <div
-          className="page-container relative z-10 flex flex-col gap-6"
-        >
+        <div className="page-container relative z-10 stack gap-6">
           <motion.section
             aria-label="Pot actions"
             {...stepEnter}
             className="surface-panel shadow-card mx-auto flex w-fit flex-wrap justify-center gap-4 p-4"
           >
             {potActions.map((action) => {
-              const Icon =
-                action.icon;
+              const Icon = action.icon;
 
               return (
                 <Button
                   key={action.label}
                   type="button"
                   variant={action.variant}
-                  onClick={
-                    handleProtectedAction
-                  }
+                  onClick={handleProtectedAction}
                 >
                   <Icon size={18} />
 
-                  <span>
-                    {action.label}
-                  </span>
+                  <span>{action.label}</span>
                 </Button>
               );
             })}
@@ -145,9 +124,7 @@ export default function PotPreviewPage() {
             <Button
               type="button"
               variant="tertiaryIcon"
-              onClick={
-                handleProtectedAction
-              }
+              onClick={handleProtectedAction}
               aria-label="Open menu"
             >
               <Ellipsis size={18} />
@@ -157,34 +134,26 @@ export default function PotPreviewPage() {
           <motion.section
             aria-labelledby="invite-heading"
             {...stepEnter}
-            className="mx-auto flex w-full max-w-[662px] flex-col gap-4 rounded-[10px] bg-[var(--color-grey-95-40)] p-5"
+            className="mx-auto stack w-full max-w-[662px] gap-4 rounded-[10px] bg-[var(--color-grey-95-40)] p-5"
           >
-            <h2
-              id="invite-heading"
-              className="type-pot-invite-title"
-            >
+            <h2 id="invite-heading" className="type-pot-invite-title">
               Invite people to pay
             </h2>
 
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-6">
               {socials.map((social) => {
-                const Icon =
-                  social.icon;
+                const Icon = social.icon;
 
                 return (
                   <Button
                     key={social.id}
                     type="button"
                     variant="social"
-                    onClick={
-                      handleProtectedAction
-                    }
+                    onClick={handleProtectedAction}
                   >
                     <Icon size={20} />
 
-                    <span className="type-body-small">
-                      {social.label}
-                    </span>
+                    <span>{social.label}</span>
                   </Button>
                 );
               })}
@@ -193,12 +162,7 @@ export default function PotPreviewPage() {
         </div>
       </div>
 
-      <SignupModal
-        open={isSignupOpen}
-        onClose={() =>
-          setIsSignupOpen(false)
-        }
-      />
+      <SignupModal open={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
     </main>
   );
 }

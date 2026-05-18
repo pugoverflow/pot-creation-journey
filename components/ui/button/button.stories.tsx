@@ -1,10 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import {
-  Ellipsis,
-  MoveDownRight,
-  MoveUpRight,
-  Palette,
-} from "lucide-react";
+import { Ellipsis, MoveDownRight, MoveUpRight, Palette } from "lucide-react";
 
 import { Button } from "./button";
 

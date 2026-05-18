@@ -16,6 +16,9 @@ type ToggleGroupProps = {
   ariaLabel: string;
 };
 
+const toggleBaseClassName =
+  "flex min-h-16 w-full flex-col items-center justify-center gap-[3.2px] rounded-xl px-1.5 py-2 transition-all";
+
 export function ToggleGroup({
   options,
   value,
@@ -33,7 +36,7 @@ export function ToggleGroup({
         }
       }}
       aria-label={ariaLabel}
-      className="grid grid-cols-1 gap-[14px] sm:grid-cols-2 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3"
     >
       {options.map((option) => {
         const isSelected = value === option.id;
@@ -44,19 +47,13 @@ export function ToggleGroup({
             value={option.id}
             className={
               isSelected
-                ? "flex min-h-16 w-full flex-col items-center justify-center gap-[3.2px] rounded-[12px] border border-[var(--color-yellow-50)] bg-[var(--color-grey-95-selected)] px-[6px] py-2 shadow-focus transition-all"
-                : "flex min-h-16 w-full flex-col items-center justify-center gap-[3.2px] rounded-[12px] border border-[var(--color-grey-98)] bg-[var(--color-grey-94)] px-[6px] py-2 transition-all"
+                ? `${toggleBaseClassName} border border-[var(--color-yellow-50)] bg-[var(--color-grey-95-selected)] shadow-focus`
+                : `${toggleBaseClassName} border border-[var(--color-grey-98)] bg-[var(--color-grey-94)]`
             }
           >
-            {option.icon && (
-              <span className="type-emoji">
-                {option.icon}
-              </span>
-            )}
+            {option.icon && <span className="type-emoji">{option.icon}</span>}
 
-            <span className="type-body-small">
-              {option.label}
-            </span>
+            <span className="type-body-small">{option.label}</span>
           </Toggle>
         );
       })}

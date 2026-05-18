@@ -23,7 +23,9 @@ function UtilityClassesDocumentation() {
           <code className="type-body-small">shadow-focus</code>,{" "}
           <code className="type-body-small">surface-card</code>,{" "}
           <code className="type-body-small">surface-panel</code>,{" "}
-          <code className="type-body-small">stack</code>
+          <code className="type-body-small">surface-field</code>,{" "}
+          <code className="type-body-small">stack</code>,{" "}
+          <code className="type-body-small">asset-icon-mask</code>
         </li>
       </ul>
     </article>

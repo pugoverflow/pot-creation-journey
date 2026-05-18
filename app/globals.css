@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------- */
+/* Root — body font (Next.js font variables from layout.tsx)                  */
+/* -------------------------------------------------------------------------- */
+
 :root {
   --font-sans: var(--font-inter);
 }
+
+/* -------------------------------------------------------------------------- */
+/* Design tokens — colours, type scale, font families (Tailwind @theme)        */
+/* -------------------------------------------------------------------------- */
 
 @theme {
   --font-1: var(--font-inter);
@@ -13,6 +21,7 @@
   --font-weight-regular: 400;
   --font-weight-semi-bold: 600;
 
+  /* Neutrals & brand */
   --color-azure-11: #0f172a;
   --color-azure-17: #1e2939;
   --color-azure-34: #4b5563;
@@ -31,57 +40,54 @@
   --color-white: #ffffff;
   --color-yellow-50: #ffde00;
 
+  /* Homepage */
   --text-homepage-title-letter-spacing: -0.96px;
   --text-homepage-title-line-height: 52.8px;
   --text-homepage-title-size: 48px;
 
+  /* Forms & UI chrome */
   --text-labels-line-height: 24px;
   --text-labels-size: 16px;
-
   --text-body-large-line-height: 27px;
   --text-body-large-size: 18px;
-
   --text-body-small-line-height: 22.8px;
   --text-body-small-size: 14.5px;
-
   --text-button-line-height: 24px;
   --text-button-size: 16px;
-
-  --text-button-cta-line-height: 24px;
   --text-button-cta-size: 15.4px;
-
   --text-input-line-height: 1;
   --text-input-size: 16px;
-
   --text-emoji-line-height: 18px;
   --text-emoji-size: 18px;
 
+  /* Dashboard / pot preview */
   --text-pot-name-line-height: 60px;
   --text-pot-name-size: 57.9px;
-
   --text-pot-amount-line-height: 80px;
   --text-pot-amount-size: 77.5px;
-
-  --text-social-proof-stars-letter-spacing: 2px;
-  --text-social-proof-stars-line-height: 24px;
-  --text-social-proof-stars-size: 16px;
-
-  --text-social-proof-caption-line-height: 24px;
-  --text-social-proof-caption-size: 14px;
-
   --text-pot-invite-title-line-height: 17.5px;
   --text-pot-invite-title-size: 13.3px;
 
+  /* Marketing */
+  --text-social-proof-stars-letter-spacing: 2px;
+  --text-social-proof-stars-line-height: 24px;
+  --text-social-proof-stars-size: 16px;
+  --text-social-proof-caption-line-height: 24px;
+  --text-social-proof-caption-size: 14px;
+
+  /* Modals */
   --text-dialog-title-letter-spacing: -0.2px;
   --text-dialog-title-line-height: 28px;
   --text-dialog-title-size: 20px;
-
   --text-dialog-description-line-height: 20px;
   --text-dialog-description-size: 14px;
-
   --text-dialog-legal-line-height: 18px;
   --text-dialog-legal-size: 12px;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Base — document defaults                                                   */
+/* -------------------------------------------------------------------------- */
 
 @layer base {
   * {
@@ -102,11 +108,21 @@
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/* Components — layout, elevation, surfaces, typography                         */
+/* -------------------------------------------------------------------------- */
+
 @layer components {
+  /* Layout */
   .page-container {
-    @apply mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-[120px];
+    @apply mx-auto w-full max-w-[1440px] px-5 md:px-10 xl:px-30;
   }
 
+  .stack {
+    @apply flex flex-col;
+  }
+
+  /* Elevation */
   .shadow-elevated {
     @apply shadow-[0px_4px_24px_0px_#1E1B4B0F];
   }
@@ -119,22 +135,20 @@
     @apply shadow-[0px_0px_0px_3px_#FFDE0066];
   }
 
+  /* Surfaces — white panels with border (compose with shadow-* as needed) */
   .surface-card {
-    @apply rounded-[20px] border border-[var(--color-grey-94)] bg-white;
+    @apply rounded-[20px] border border-[var(--color-grey-94)] bg-[var(--color-white)];
   }
 
   .surface-panel {
-    @apply rounded-[10px] border border-[var(--color-grey-94)] bg-white;
+    @apply rounded-[10px] border border-[var(--color-grey-94)] bg-[var(--color-white)];
   }
 
   .surface-field {
-    @apply rounded-[10px] border border-[var(--color-grey-91)] bg-white;
+    @apply rounded-[10px] border border-[var(--color-grey-91)] bg-[var(--color-white)];
   }
 
-  .stack {
-    @apply flex flex-col;
-  }
-
+  /* Icons — SVG mask tint via currentColor */
   .asset-icon-mask {
     mask-repeat: no-repeat;
     mask-position: center;
@@ -144,6 +158,7 @@
     -webkit-mask-size: contain;
   }
 
+  /* Typography — marketing & homepage */
   .type-homepage-title {
     color: var(--color-blue-20);
     font-family: var(--font-1);
@@ -158,7 +173,6 @@
     font-family: var(--font-1);
     font-size: var(--text-labels-size);
     font-weight: var(--font-weight-semi-bold);
-    letter-spacing: 0;
     line-height: var(--text-labels-line-height);
   }
 
@@ -167,7 +181,6 @@
     font-family: var(--font-2);
     font-size: var(--text-body-large-size);
     font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
     line-height: var(--text-body-large-line-height);
   }
 
@@ -176,75 +189,7 @@
     font-family: var(--font-1);
     font-size: var(--text-body-small-size);
     font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
     line-height: var(--text-body-small-line-height);
-  }
-
-  .type-button-default {
-    color: var(--color-blue-20);
-    font-family: var(--font-2);
-    font-size: var(--text-button-size);
-    font-weight: var(--font-weight-semi-bold);
-    letter-spacing: 0;
-    line-height: var(--text-button-line-height);
-  }
-
-  .type-button-on-color {
-    font-family: var(--font-2);
-    font-size: var(--text-button-size);
-    font-weight: var(--font-weight-semi-bold);
-    letter-spacing: 0;
-    line-height: var(--text-button-line-height);
-    color: var(--color-white);
-  }
-
-  .type-button-cta {
-    color: var(--color-blue-20);
-    font-family: var(--font-1);
-    font-size: var(--text-button-cta-size);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0;
-    line-height: var(--text-button-cta-line-height);
-    text-align: center;
-  }
-
-  .type-input {
-    color: var(--color-azure-65);
-    font-family: var(--font-2);
-    font-size: var(--text-input-size);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0;
-    line-height: var(--text-input-line-height);
-  }
-
-  .type-input::placeholder {
-    color: var(--color-azure-65);
-  }
-
-  .type-emoji {
-    font-family: var(--font-1);
-    font-size: var(--text-emoji-size);
-    font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
-    line-height: var(--text-emoji-line-height);
-  }
-
-  .type-pot-name {
-    color: var(--color-white);
-    font-family: var(--font-1);
-    font-size: var(--text-pot-name-size);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0;
-    line-height: var(--text-pot-name-line-height);
-  }
-
-  .type-pot-amount {
-    color: var(--color-white);
-    font-family: var(--font-1);
-    font-size: var(--text-pot-amount-size);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0;
-    line-height: var(--text-pot-amount-line-height);
   }
 
   .type-social-proof-stars {
@@ -261,8 +206,71 @@
     font-family: var(--font-2);
     font-size: var(--text-social-proof-caption-size);
     font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
     line-height: var(--text-social-proof-caption-line-height);
+  }
+
+  /* Typography — buttons & inputs */
+  .type-button-default,
+  .type-button-on-color {
+    font-family: var(--font-2);
+    font-size: var(--text-button-size);
+    font-weight: var(--font-weight-semi-bold);
+    line-height: var(--text-button-line-height);
+  }
+
+  .type-button-default {
+    color: var(--color-blue-20);
+  }
+
+  .type-button-on-color {
+    color: var(--color-white);
+  }
+
+  .type-button-cta {
+    color: var(--color-blue-20);
+    font-family: var(--font-1);
+    font-size: var(--text-button-cta-size);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-button-line-height);
+    text-align: center;
+  }
+
+  .type-input {
+    color: var(--color-azure-65);
+    font-family: var(--font-2);
+    font-size: var(--text-input-size);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-input-line-height);
+  }
+
+  .type-input::placeholder {
+    color: var(--color-azure-65);
+  }
+
+  .type-emoji {
+    font-family: var(--font-1);
+    font-size: var(--text-emoji-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--text-emoji-line-height);
+  }
+
+  /* Typography — dashboard */
+  .type-pot-name,
+  .type-pot-amount {
+    color: var(--color-white);
+    font-family: var(--font-1);
+  }
+
+  .type-pot-name {
+    font-size: var(--text-pot-name-size);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-pot-name-line-height);
+  }
+
+  .type-pot-amount {
+    font-size: var(--text-pot-amount-size);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--text-pot-amount-line-height);
   }
 
   .type-pot-invite-title {
@@ -270,10 +278,10 @@
     font-family: var(--font-1);
     font-size: var(--text-pot-invite-title-size);
     font-weight: var(--font-weight-semi-bold);
-    letter-spacing: 0;
     line-height: var(--text-pot-invite-title-line-height);
   }
 
+  /* Typography — modals */
   .type-dialog-title {
     color: var(--color-azure-11);
     font-family: var(--font-1);
@@ -284,25 +292,23 @@
     text-align: center;
   }
 
-  .type-dialog-description {
-    color: var(--color-grey-46);
-    font-family: var(--font-1);
-    font-size: var(--text-dialog-description-size);
-    font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
-    line-height: var(--text-dialog-description-line-height);
-    text-align: center;
-  }
-
+  .type-dialog-description,
   .type-dialog-legal {
     color: var(--color-grey-46);
     font-family: var(--font-1);
-    font-size: var(--text-dialog-legal-size);
     font-weight: var(--font-weight-regular);
-    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .type-dialog-description {
+    font-size: var(--text-dialog-description-size);
+    line-height: var(--text-dialog-description-line-height);
+  }
+
+  .type-dialog-legal {
+    font-size: var(--text-dialog-legal-size);
     line-height: var(--text-dialog-legal-line-height);
     padding-bottom: 0.75px;
-    text-align: center;
   }
 
   .type-dialog-link {
