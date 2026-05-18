@@ -8,6 +8,13 @@ const meta = {
   parameters: {
     layout: "centered",
   },
+  decorators: [
+    (Story) => (
+      <div className="rounded-md bg-[var(--color-blue-23)] px-8 py-6">
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof AnimatedAmount>;
 
 export default meta;
