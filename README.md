@@ -2,6 +2,14 @@
 
 A responsive Next.js app: marketing homepage → multi-step pot creation → dashboard preview.
 
+**Desktop:**
+
+https://github.com/user-attachments/assets/91e61916-9a32-41b9-80f7-c47bff0ab1ff
+
+**Mobile:**
+
+https://github.com/user-attachments/assets/14e8fbcf-0feb-4f27-9bb4-f252203ffcc3
+
 ## Features
 
 - Multi-step pot creation flow
